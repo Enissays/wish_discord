@@ -84,7 +84,7 @@ client.on('messageCreate', async message => {
 
 	}
 
-	if (message.channel.id === actuallyTalking) {
+	if (message.channel.id === actuallyTalking && !message.content.includes("(") && !message.content.includes(")")) {
 		// Send a message to the chatbot
 		let response = await characterAI.send(message.content);
 		message.reply(response);
