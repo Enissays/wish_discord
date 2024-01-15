@@ -1,3 +1,5 @@
 {
-    "first_bottle" : {"title":"Part, part petite bouteille..", "emoji" : "🍾", "description": "Envoie ta première bouteille à l'eau", "xp":10}
+    "first_bottle" : {"title":"Part, part petite bouteille..", "emoji" : "🍾", "description": "Envoie ta première bouteille à l'eau", "xp":10},
+    "tom" : {"title":"Te voilà, mon petit Tom..", "emoji" : "💩", "description": "DM tom pour la première fois", "xp":20}
+
 }

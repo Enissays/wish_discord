@@ -1,9 +1,19 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
 const { token } = require('./config.json');
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages] });
-const ranks = require('./utilitary/fn_ranks');
+Partials.Channel;
+const client = new Client({
+	'intents': [
+	  GatewayIntentBits.DirectMessages,
+	  GatewayIntentBits.Guilds,
+	  GatewayIntentBits.GuildPresences,
+	  GatewayIntentBits.GuildMembers,
+	  GatewayIntentBits.GuildMessages, 
+	  GatewayIntentBits.GuildVoiceStates
+	],
+	'partials': [Partials.Channel]
+  });const ranks = require('./utilitary/fn_ranks');
 
 const Enmap = require("enmap");
 const u_data = new Enmap({name: "points"});
@@ -25,7 +35,34 @@ client.once(Events.ClientReady, () => {
 	console.log('Ready!');
 });
 
-client.on(Events.MessageCreate, message => {
+client.on(Events.VoiceServerUpdate, async (oldState, newState) => {
+	// On compare si une nouvelle personne a rejoint le vocal 
+	if (oldState.channelId === null && newState.channelId !== null) {
+		// On envoie un message privé à un utilisateur
+		client.users.fetch("849936690915442698").then((user) => {
+			user.send(newState.member.displayName + " a rejoint le channel vocal " + newState.channel.name);
+		});
+	}
+});
+
+client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
+	// On compare si une nouvelle personne a rejoint le vocal 
+	if (oldState.channelId === null && newState.channelId !== null) {
+		// On envoie un message privé à un utilisateur
+		client.users.fetch("849936690915442698").then((user) => {
+			user.send(newState.member.displayName + " a rejoint le channel vocal " + newState.channel.name);
+		});
+	}
+});
+
+client.on('messageCreate', async message => {
+	console.log(message.channel.type);
+
+	if (message.author.id == '679076920096325643' && message.channel.type == 1)
+	{
+		var channel = client.channels.cache.get('1195492736674037780');
+		await channel.send("Tom a dit : " + message.content);
+	}
 	if (u_data.get(message.author.id)) 
 	{
 		var newUdata = ranks.addXp(3, u_data.get(message.author.id), message.channel.send, true);
