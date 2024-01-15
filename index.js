@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
-const { token } = require('./config.json');
+
+const { token, AUTH_TOKEN } = require('./config.json');
 Partials.Channel;
 const client = new Client({
 	'intents': [
@@ -10,10 +11,17 @@ const client = new Client({
 	  GatewayIntentBits.GuildPresences,
 	  GatewayIntentBits.GuildMembers,
 	  GatewayIntentBits.GuildMessages, 
-	  GatewayIntentBits.GuildVoiceStates
+	  GatewayIntentBits.GuildVoiceStates,
+	  GatewayIntentBits.MessageContent
 	],
 	'partials': [Partials.Channel]
   });const ranks = require('./utilitary/fn_ranks');
+
+
+const characterAI = require("@parking-master/node_characterai");
+characterAI.authenticate(AUTH_TOKEN);
+characterAI.setup("nuZnZrHcZnDQQgnDKQWccG-Rw1lOACX8rHqX96fJav8", "0bb19191-1013-4870-9bd0-9fb63650b009", "46330081", "Enienieni");
+
 
 const Enmap = require("enmap");
 const u_data = new Enmap({name: "points"});
@@ -31,7 +39,15 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-client.once(Events.ClientReady, () => {
+// C.A.I. stuff
+let chat;
+var actuallyTalking = false;
+client.once(Events.ClientReady, async () => {
+	// Authenticate as a guest
+	(async () => {
+		let response = await characterAI.send("Désolé..");
+		console.log(response);
+	  })();
 	console.log('Ready!');
 });
 
@@ -56,7 +72,27 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 });
 
 client.on('messageCreate', async message => {
-	console.log(message.channel.type);
+	if (message.author.bot) return;
+
+	if (message.content.toLowerCase().includes("eni?")) {
+		console.log("Replying...");
+		actuallyTalking = message.channel.id;
+		// Send a message to the chatbot
+		let response = await characterAI.send(message.content);
+		message.reply(response);
+		console.log("Replied.");
+
+	}
+
+	if (message.channel.id === actuallyTalking) {
+		// Send a message to the chatbot
+		let response = await characterAI.send(message.content);
+		message.reply(response);
+	}
+
+	if (message.content.toLowerCase().includes("ciao") || message.content.toLowerCase().includes("bye") || message.content.toLowerCase().includes("au revoir") || message.content.toLowerCase().includes("pas toi")) {
+		actuallyTalking = false;
+	}
 
 	if (message.author.id == '679076920096325643' && message.channel.type == 1)
 	{
