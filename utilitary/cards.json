@@ -1,3 +1,22 @@
 {
-    
+    "default" : 
+    {
+        "name" : "Attaque par défaut",
+        "dmg" : 10,
+        "description" : "L'attaque par défaut."
+    },
+
+    "heal_default" :
+    {
+        "name" : "Soin par défaut",
+        "heal" : 10,
+        "description" : "Le soin par défaut."
+    },
+
+    "shield_default" : 
+    {
+        "name" : "Garde par défaut",
+        "def" : 10,
+        "description" : "La garde par défaut."
+    }
 }

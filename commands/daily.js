@@ -13,7 +13,7 @@ module.exports = {
         if (date - user_data.daily < 86400000) return interaction.reply({content : 'Oups ! Tu n\'as pas encore ta récompense quotidienne de prête ! '});
         
         const nb_points = utilitary.getRandom(50, 200);
-        user_data = ranks.addXp(nb_points, user_data, interaction.reply);
+        user_data = ranks.addXp(nb_points, user_data, interaction.channel);
         user_data.daily = Date.now();
         udata.set(interaction.user.id, user_data);
         interaction.reply({content:`${user_data.nickname} vient de récupérer ${nb_points} xp oniriques!`})

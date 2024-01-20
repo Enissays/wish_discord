@@ -38,8 +38,8 @@ module.exports =
                 xp : user_data.rank.xp - user_data.rank.nextRank,
                 nextRank : Math.round(user_data.rank.nextRank += (user_data.rank.nextRank*0.5))
             }
-            if (!onMessage) channel.send(`${user_data.nickname} vient de passer au rang **${user_data.rank}** !!`)
-            else channel.send(`${user_data.nickname} vient de passer au rang **${user_data.rank}** !!`)
+            if (!onMessage) channel.send(`${user_data.nickname} vient de passer au rang **${user_data.rank.level}** !!`)
+            else channel.send(`${user_data.nickname} vient de passer au rang **${user_data.rank.level}** !!`)
         }
 
         return user_data;

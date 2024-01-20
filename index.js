@@ -3,6 +3,8 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
 
 const { token, AUTH_TOKEN } = require('./config.json');
+const { getRandom, getRandomList } = require("./utilitary/fn_global.js")
+
 Partials.Channel;
 const client = new Client({
 	'intents': [
@@ -39,15 +41,13 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
+// Bjr tout le monde
+
 // C.A.I. stuff
 let chat;
 var actuallyTalking = false;
 client.once(Events.ClientReady, async () => {
-	// Authenticate as a guest
-	(async () => {
-		let response = await characterAI.send("Désolé..");
-		console.log(response);
-	  })();
+
 	console.log('Ready!');
 });
 
@@ -78,20 +78,17 @@ client.on('messageCreate', async message => {
 		console.log("Replying...");
 		actuallyTalking = message.channel.id;
 		// Send a message to the chatbot
-		let response = await characterAI.send(message.content);
+		let response = await characterAI.send(message.author.username + " : " + message.content + (message.author.username == "tayioukimura" ? "(réponds d'une manière douce et amoureuse en utilisant des mots comme 'bb' ou 'mv')" : "") + (message.author.username == "theysaideni" ? "(c'est ton créateur qui te parle ici)" : ""));
 		message.reply(response);
 		console.log("Replied.");
 
-	}
-
-	if (message.channel.id === actuallyTalking && !message.content.includes("(") && !message.content.includes(")")) {
-		// Send a message to the chatbot
-		let response = await characterAI.send(message.content);
-		message.reply(response);
-	}
-
-	if (message.content.toLowerCase().includes("ciao") || message.content.toLowerCase().includes("bye") || message.content.toLowerCase().includes("au revoir") || message.content.toLowerCase().includes("pas toi")) {
+	}  else if (message.content.toLowerCase().includes("ciao") || message.content.toLowerCase().includes("bye") || message.content.toLowerCase().includes("au revoir") || message.content.toLowerCase().includes("pas toi")) {
 		actuallyTalking = false;
+	}
+	else if (message.channel.id === actuallyTalking && !message.content.includes("(") && !message.content.includes(")")) {
+		// Send a message to the chatbot
+		let response = await characterAI.send(message.author.username + " : " + message.content + (message.author.username == "tayioukimura" ? "(réponds d'une manière douce et amoureuse en utilisant des mots comme 'bb' ou 'mv')" : "") + (message.author.username == "theysaideni" ? "(c'est ton créateur qui te parle ici)" : ""));
+		message.reply(response);
 	}
 
 	if (message.author.id == '679076920096325643' && message.channel.type == 1)

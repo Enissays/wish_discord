@@ -32,7 +32,8 @@ module.exports = {
                 guildId: channel.guild.id,
                 adapterCreator: channel.guild.voiceAdapterCreator,
                 selfDeaf: false,
-                selfMute: true
+                selfMute: true,
+                channelName: channel.name
             });
             return interaction.reply({content : `J'ai rejoint le channel vocal ${channelName}.`, ephemeral: true});
         } catch (error) {

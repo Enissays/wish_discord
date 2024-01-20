@@ -47,6 +47,11 @@ module.exports = {
                 udata.set(interaction.user.id, user_data);
                 interaction.reply({content: `Désormais je t'appelerais ${nick_input} ! `, ephemeral:true});
                 break;
+
+            case "show": 
+                
+
+            break;
         }
 	},
 };
