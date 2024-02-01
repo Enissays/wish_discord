@@ -8,7 +8,6 @@ module.exports = {
 		.setDescription("Resets your users data"),
 	async execute(interaction, client, udata) {
         udata.delete(interaction.user.id);
-		bottle_data.set('bottles', {data:[]});
-        interaction.reply('Deleted');
+        interaction.reply('Ouais jtai renitialisé la ouais');
 	},
 };

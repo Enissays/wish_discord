@@ -11,10 +11,15 @@ module.exports = {
         .setDescription("Affiche les cartes que tu possèdes")
             .addSubcommand(subcommand => subcommand.setName('list').setDescription("Affiche toutes tes cartes"))
             .addSubcommand(subcommand => subcommand.setName('info').setDescription("Affiche les informations d'une carte")
-                                                    .addStringOption(option => option.setName('nom').setDescription("Le nom de la carte"))),
+                                                    .addStringOption(option => option.setName('nom').setDescription("Le nom de la carte")))
+            .addSubcommand(subcommand => subcommand.setName('default').setDescription("Réinitialise ton deck")
+                                                    
+            ),
+
     async execute(interaction, client, udata) {
         var user_data = ranks.getRanks(interaction.user, udata);
         if (user_data.cards == undefined) return interaction.reply({content:"Tu ne possèdes aucune carte !", ephemeral:true});
+        if (user_data.deck == undefined) user_data.deck = [];
         switch (interaction.options.getSubcommand())
         {
             case "list":
@@ -27,15 +32,25 @@ module.exports = {
                 var right_button = new ButtonBuilder()
                     .setCustomId("right")
                     .setLabel("→")
-                    .setStyle("PRIMARY");
+                    .setStyle(1);
                 var left_button = new ButtonBuilder()
                     .setCustomId("left")
                     .setLabel("←")
-                    .setStyle("PRIMARY");
-                var row = new ActionRowBuilder()
-                    .addComponents(left_button, right_button);
+                    .setStyle(1);
 
-                var message = await interaction.reply({embeds:[actual_display], components:[row]});
+                var add_to_deck_button = new ButtonBuilder()
+                    .setCustomId("add_to_deck")
+                    .setLabel("Ajouter au deck")
+                    .setStyle(2);
+                var remove_from_deck_button = new ButtonBuilder()
+                    .setCustomId("remove_from_deck")
+                    .setLabel("Retirer du deck")
+                    .setStyle(2);
+
+                var row = new ActionRowBuilder()
+                    .addComponents(left_button, right_button, add_to_deck_button, remove_from_deck_button);
+
+                var message = await interaction.reply({embeds:[actual_display], components:[row], ephemeral:true});
                 const collectorFilter = i => i.user.id === interaction.user.id;
                 const collector = message.createMessageComponentCollector({ filter: collectorFilter, time: 60000 });
                 collector.on('collect', async i => {
@@ -46,8 +61,23 @@ module.exports = {
                         if (actual_card_index == 0) actual_card_index = user_data.cards.length - 1;
                         else actual_card_index--;
                     }
+                    else if (i.customId === 'add_to_deck') {
+                        if (user_data.deck.length >= 5) return i.reply({content:"Ton deck est déjà plein !", ephemeral:true});
+                        if (user_data.deck.includes(user_data.cards[actual_card_index])) return i.reply({content:"Cette carte est déjà dans ton deck !", ephemeral:true});
+                        user_data.deck.push(user_data.cards[actual_card_index]);
+                        udata.set(interaction.user.id, user_data);
+                        return i.reply({content:`La carte ${cards[user_data.cards[actual_card_index]].name} a été ajoutée à ton deck !`, ephemeral:true});
+                    }
+                    else if (i.customId === 'remove_from_deck') {
+                        if (!user_data.deck.includes(user_data.cards[actual_card_index])) return i.reply({content:"Cette carte n'est pas dans ton deck !", ephemeral:true});
+                        user_data.deck.splice(user_data.deck.indexOf(user_data.cards[actual_card_index]), 1);
+                        udata.set(interaction.user.id, user_data);
+                        return i.reply({content:`La carte ${cards[user_data.cards[actual_card_index]].name} a été retirée de ton deck !`, ephemeral:true});
+                    }
                     actual_display.setTitle(`${cards[user_data.cards[actual_card_index]].name}`)
-                        .setDescription(cards[user_data.cards[actual_card_index]].description);
+                        .setDescription(cards[user_data.cards[actual_card_index]].description)
+                        .setImage(cards[user_data.cards[actual_card_index]].img)
+                        .setFooter({text:`Coût : ${cards[user_data.cards[actual_card_index]].mana} mana | Carte de ${user_data.nickname}`, iconURL:interaction.user.avatarURL()});
                     await i.update({embeds:[actual_display]});
                 });
                 collector.on('end', collected => {
@@ -58,13 +88,25 @@ module.exports = {
 
             case "info":
                 var card_name = interaction.options.getString("nom");
-                if (user_data.cards[card_name] == undefined) return interaction.reply({content:"Tu ne possèdes pas cette carte !", ephemeral:true});
+                var card = cards.find(c => c.name.includes(card_name));
+                if (card == undefined) return interaction.reply({content:"Tu ne possèdes pas cette carte !", ephemeral:true});
 
                 var embed_info = new EmbedBuilder()
-                    .setTitle(card_name)
-                    .setDescription(cards[card_name].description)
+                    .setTitle(card.name)
+                    .setDescription(card.description)
                     .setFooter({text:`Carte de ${user_data.nickname}`, iconURL:interaction.user.avatarURL()});
                 interaction.reply({embeds:[embed_info]});
+                break;
+
+            case "default":
+                // remove and add to his deck the "shield_default", "heal_default", and "default"
+                if (!user_data.cards.includes("shield_default")) user_data.cards.push("shield_default");
+                if (!user_data.cards.includes("heal_default")) user_data.cards.push("heal_default");
+                if (!user_data.cards.includes("default")) user_data.cards.push("default");
+                if (!user_data.cards.includes("mana_reload_default")) user_data.cards.push("mana_reload_default");
+                if (!user_data.cards.includes("belbonbon")) user_data.cards.push("belbonbon");
+                udata.set(interaction.user.id, user_data);
+                interaction.reply({content:"Ton deck a été réinitialisé, tu possèdes désormais les quatres cartes par défaut !"});
                 break;
         }
     }

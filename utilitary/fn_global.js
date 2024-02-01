@@ -1,5 +1,24 @@
 module.exports = 
 {
+    msToTime(ms)
+    {
+        var days = Math.floor(ms / (24*60*60*1000));
+        var daysms=ms % (24*60*60*1000);
+        var hours = Math.floor((daysms)/(60*60*1000));
+        var hoursms=ms % (60*60*1000);
+        var minutes = Math.floor((hoursms)/(60*1000));
+        var minutesms=ms % (60*1000);
+        var sec = Math.floor((minutesms)/(1000));
+        return days+" jours, "+hours+" heures, "+minutes+" minutes et "+sec+" secondes";
+    },
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    },
+    randomChoice(object)
+    {
+        var keys = Object.keys(object);
+        return keys[Math.floor(keys.length * Math.random())]
+    },
     getRandom(min, max)
     {
         return Math.round(Math.random() * max) + min;

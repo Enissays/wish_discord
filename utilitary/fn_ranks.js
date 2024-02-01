@@ -1,8 +1,80 @@
 const { EmbedBuilder } = require("discord.js");
 const cheevos = require("./cheevos.json");
+const cards = require("./cards.json");
 
 module.exports = 
 {
+
+    play_change(game_data, card_id, user_id, opponent_id)
+    {
+        var card = cards[card_id];
+        game_data[user_id].mana -= card.mana;
+        if (card.counters && !card.counters.includes(game_data.last_card)) return game_data.log.push(`<@${user_id}> a joué **${card.name}** mais <@${opponent_id}> n'a pas joué de carte qui peut être contrée !`);
+        game_data.last_card = card_id;
+        if (card.self_pv)
+        {
+            game_data[user_id].hp -= card.self_pv;
+            game_data.log.push(`<@${user_id}> s'est infligé **${card.self_pv}** points de dégâts !`);
+        }
+        if (card.self_stun) 
+        {
+            game_data.self_stun = card.self_stun;
+            game_data.stun = 0;
+        }
+        if (card.effect)
+        {
+            game_data.effects.push(card.effect);
+        }
+        if (card.atk_buff)
+        {
+            game_data[user_id].atk_buff *= card.atk_buff;
+            game_data.log.push(`<@${user_id}> a augmenté son attaque de **${card.atk_buff}** fois !`);
+        }
+
+        if (card.def_buff)
+        {
+            game_data[user_id].def_buff *= card.def_buff;
+            game_data.log.push(`<@${user_id}> a augmenté sa défense de **${card.def_buff}** fois !`);
+        }
+        if (card.stun) 
+        {
+            game_data.stun = card.stun;
+            game_data.log.push(`<@${opponent_id}> est étourdi pendant **${card.stun}** tour(s) !`);
+        }
+        if (card.heal) 
+        {
+            game_data[user_id].hp += card.heal;
+            if (game_data[user_id].hp > 100) game_data[user_id].hp = 100;
+            game_data.log.push(`<@${user_id}> a récupéré **${card.heal}** points de vie !`);
+        }
+
+        if (card.dmg)
+        {
+            if (game_data[opponent_id].shield > 0)
+            {
+                game_data[opponent_id].shield -= card.dmg;
+                if (game_data[opponent_id].shield < 0) game_data[opponent_id].shield = 0;
+                game_data.log.push(`<@${opponent_id}> a perdu **${card.dmg}** points de bouclier !`);
+                return;
+            }
+            var atk_calc = (card.dmg * game_data[user_id].atk_buff) / game_data[opponent_id].def_buff;
+            game_data[opponent_id].hp -= atk_calc;
+            game_data.log.push(`<@${user_id}> a perdu **${atk_calc}** points de vie !`);
+        }
+
+        if (card.shield)
+        {
+            game_data[user_id].shield += card.shield;
+            game_data.log.push(`<@${user_id}> a gagné **${card.shield}** points de bouclier !`);
+        }
+
+        if (card.mana_reload)
+        {
+            game_data[user_id].mana += card.mana_reload;
+            game_data.log.push(`<@${user_id}> a récupéré **${card.mana_reload}** points de mana !`);
+        }
+
+    },
     getRanks(user, udata)
     {
         return udata.ensure(user.id,
@@ -15,7 +87,8 @@ module.exports =
                 },
                 nickname : user.username,
                 color : "#FFFFFF",
-                daily : 0
+                daily : 0,
+                coins : 0
             });
     },
 

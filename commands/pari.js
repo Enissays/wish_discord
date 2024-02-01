@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const Enmap = require("enmap");
 const pari_data = new Enmap({name: "pari"});
+const pari_coins_data = new Enmap({name: "pari"});
 
 
 module.exports = {
@@ -88,6 +89,12 @@ module.exports = {
                     pari_data.set(id, pari);
                     interaction.reply({content:`Le gagnant du pari ${id} est ${winner.username} !`});
                     break;
+
+                case "coins" :
+                    var id = interaction.options.getString("id");
+                    var user_coins = pari_coins_data.ensure(interaction.user.id, 0);
+                    break;
+
         }
 
 	},

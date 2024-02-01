@@ -1,22 +1,185 @@
 {
     "default" : 
     {
-        "name" : "Attaque par défaut",
+        "name" : "Attaque d'Alex",
         "dmg" : 10,
-        "description" : "L'attaque par défaut."
+        "description" : "L'attaque par défaut à l'effigie d'Alex ?? WESH.\nRetire 10 dégâts à l'ennemi.",
+        "mana" : 10,
+        "rarity" : 1,
+        "img" : "https://i.imgur.com/n5xFrOT.png"
     },
 
     "heal_default" :
     {
-        "name" : "Soin par défaut",
+        "name" : "Soin de Kasu",
         "heal" : 10,
-        "description" : "Le soin par défaut."
+        "description" : "Le soin par Kasu par défaut, depuis quand elle peut faire ça ?? HEIN.\nSoigne 10 points de vie.",
+        "mana" : 10,
+        "rarity" : 1,
+        "img" : "https://i.imgur.com/lzreCOD.png"
     },
 
     "shield_default" : 
     {
-        "name" : "Garde par défaut",
-        "def" : 10,
-        "description" : "La garde par défaut."
+        "name" : "Garde d'océ",
+        "shield" : 10,
+        "description" : "La garde par défaut, c'est pas ouf mais ça peut servir.\nProtège de 10 points de dégâts.",
+        "mana" : 10,
+        "rarity" : 1,
+        "img" : "https://i.imgur.com/HAzxdLd.png"
+    },
+
+    "mana_reload_default" : 
+    {
+        "name" : "Recharge de mana d'Eni",
+        "mana_reload" : 10,
+        "description" : "La recharge de mana par défaut, vu que bon c'est Eni hein.\nRecharge 10 points de mana.",
+        "mana" : 0,
+        "rarity" : 1,
+        "line" : "Allez, ça va aller, champion..",
+        "img" : "https://i.imgur.com/9kbJq7T.png"
+    },
+
+    "casa" : 
+    {
+        "name" : "Conduite à Casa",
+        "dmg" : 50,
+        "description" : "La conduite à Casa, c'est pas pour tout le monde hein.\nInflige 50 dégâts à l'ennemi contre un coût de 40 manas.",
+        "mana" : 40,
+        "rarity" : 3,
+        "line" : "ATTENTION.. WESH ??? 🚗🚗🚗",
+        "img" : "https://i.imgur.com/E5md5HF.png"
+    },
+
+    "ader_stun" : 
+    {
+        "name" : "Mot interdit d'Ader",
+        "dmg" : 5,
+        "stun" : 1,
+        "description" : "Le mot interdit d'Ader, je me demande ce que c'est... ?\nInflige 5 dégâts à l'ennemi et le paralyse contre un coût de 10 manas.",
+        "mana" : 10,
+        "rarity" : 2,
+        "line" : "Ader : les gars euh n",
+        "img" : "https://i.imgur.com/2hPr8aG.png"
+    },
+
+    "tg_tom" : 
+    {
+        "name" : "Ta gueule Tom",
+        "dmg" : 15,
+        "description" : "Ta gueule Tom",
+        "mana" : 5,
+        "rarity" : 3,
+        "img" : "https://i.imgur.com/758Nz5z.png"
+    },
+
+    "fanart_alyssa":
+    {
+        "name" : "Fanart d'Alyssa",
+        "heal" : 20,
+        "description" : "Tu viens de recevoir un fanart de la part d'Alyssa ?? Banger !!\nSoigne 20 points de vie contre un coût de 15 manas.",
+        "mana" : 15,
+        "rarity" : 2,
+        "img" : "https://i.imgur.com/W3V0wSM.png"
+    },
+    "phrase_ia" : 
+    {
+        "name" : "La phrase elle a été écrite par une IA",
+        "stun": 1,
+        "mana_reload" : 10,
+        "self_pv" : 10,
+        "description" : "Hein j'ai pas compris\nMême moi\nParalyse l'ennemi et recharge 10 points de mana contre un coût de 5 manas et 10 hp.",
+        "mana" : 5,
+        "rarity" : 1,
+        "img" : "https://i.imgur.com/0qYaAsb.png"
+    },
+    "didnt_ask" : 
+    {
+        "name" : "J'ai pas demandé par contre???",
+        "dmg" : 5,
+        "heal" : 10,
+        "description" : "Srx qui a demandé ici en vrai ???\nInflige 5 dégâts à l'ennemi et soigne 10 points de vie contre un coût de 10 manas.",
+        "mana" : 10,
+        "rarity" : 2,
+        "img" : "https://i.imgur.com/F24puD5.png"
+    },
+    "voc_meufs" : 
+    {
+        "name" : "Voc avec que des meufs",
+        "atk_buff" : 1.2,
+        "description" : "Sale bâtaaaard, t'es en voc avec que des meufs là ?? Bon appetit chef.\nMultiplie tes dégâts par x1.2 contre un coût de 20 manas.",
+        "mana" : 20,
+        "rarity" : 4,
+        "img" : "https://i.imgur.com/ivpWaKz.png"
+    },
+    "son_rap" : 
+    {
+        "name" : "Oulah, quoi?? J'ai pas écouté dsl sinon j'ai sorti un nouveau son, vs voulez écouter??",
+        "def_buff" : 1.2,
+        "description" : "J'adore Orelsan, vous savez.. ?\nMultiplie ta défense par x1.2 contre un coût de 5 manas.",
+        "mana" : 5,
+        "rarity" : 4,
+        "img" : "https://i.imgur.com/9kbJq7T.png"
+    },
+    "belbonbon" : 
+    {
+        "name" : "Belbonbon",
+        "effect" : "spanish",
+        "description" : "**CARTE PERSONNAGE À USAGE UNIQUE**\nTraduis tout le jeu en Espagnol, aucun coût de mana.",
+        "rarity" : 6,
+        "line" : "Hola, soy Belbonbon, el mejor jugador de este juego.",
+        "mana" : 0,
+        "unique" : true,
+        "img" : "https://i.imgur.com/KdaFMHj.png"
+    },
+    "loud" : 
+    {
+        "name" : "AAAAAAAAARGH",
+        "effect" : "loud",
+        "description" : "**FRERE C'EST BON PAS LA PEINE DE GUEULER !!**\nTOUT LE JEU PARLE EN MAJUSCULE ET EN PRIME, ETOURDIT TON ENNEMI, COÛTE 6 MANAS !!",
+        "stun" : 1,
+        "rarity" : 4,
+        "line" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "mana" : 6,
+        "img" : "https://i.imgur.com/6T7nL6a.png" 
+    },
+    "neuille" :
+    {
+        "name" : "Tête de neuille va",
+        "dmg" : 5,
+        "description" : "Tête de neuille va\nInflige 5 dégâts à l'ennemi contre un coût de 6 manas.",
+        "mana" : 6,
+        "rarity" : 1,
+        "img" : "https://i.imgur.com/SsKQLTb.png"
+    },
+    "never_leave_bed":
+    {
+        "name" : "Jamais je ne quitte ce lit",
+        "dmg" : 10,
+        "self_stun" : 1,
+        "heal_buff" : 1.2,
+        "description" : "Jamais je ne quitte ce lit perso\nInflige 30 dégâts à l'ennemi et te paralyse contre un coût de 15 manas, renforce tes soins de x1.2",
+        "mana" : 15,
+        "rarity" : 2,
+        "img" : "https://i.imgur.com/jkhZUUp.png"
+    },
+    "release_the_chicken" : 
+    {
+        "name" : "Lâche le poulet",
+        "stun" : 2,
+        "description" : "Lâche le poulet abderrahim tu joues à quoi ?? \nParalyse l'ennemi **deux fois** contre un coût de 25 manas.", 
+        "mana" : 25,
+        "rarity" : 3,
+        "img" : "https://i.imgur.com/GT9unKo.png"
+    },
+    "i_asked" :
+    {
+        "name" : "J'ai demandé",
+        "description" : "Contre-attaque la carte \"J'ai pas demandé par contre ???\", renforce tes dégâts de x1.7 contre un coût de 60 manas.",
+        "dmg_buff" : 1.7,
+        "mana" : 60,
+        "rarity" : 5,
+        "counters" : ["didnt_ask"]
+        
     }
 }
