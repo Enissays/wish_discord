@@ -1,5 +1,6 @@
 {
     "first_bottle" : {"title":"Part, part petite bouteille..", "emoji" : "🍾", "description": "Envoie ta première bouteille à l'eau", "xp":10},
-    "tom" : {"title":"Te voilà, mon petit Tom..", "emoji" : "💩", "description": "DM tom pour la première fois", "xp":20}
-
+    "tom" : {"title":"Te voilà, mon petit Tom..", "emoji" : "💩", "description": "DM tom pour la première fois", "xp":20},
+    "win_first_battle" : {"title":"Première victoire", "emoji" : "🏆", "description": "Gagne ton premier combat", "xp":30},
+    "how_did_we_get_here" : {"title":"Comment en sommes-nous arrivés là ?", "emoji" : "🤔", "description": "Obtiens toutes les cartes du YuGiOh onirique", "xp":60}
 }

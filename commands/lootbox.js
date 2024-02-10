@@ -14,25 +14,33 @@ module.exports = {
     async execute(interaction, client, udata) {
         var user_data = ranks.getRanks(interaction.user, udata);
         if (user_data.cards == undefined) user_data.cards = [];
+
         switch (interaction.options.getSubcommand())
         {
             case "open":
+                if (user_data.cards.length >= Object.keys(cards).length) {
+                    user_data = ranks.addCheevo("how_did_we_get_here", user_data, interaction.channel, interaction.user.avatarURL()); 
+                    udata.set(interaction.user.id, user_data); 
+                    return interaction.reply({content:"Tu possèdes déjà toutes les cartes !", fetchReply:true});
+                }
                 if (user_data.lootbox == undefined || user_data.lootbox <= 0) return interaction.reply({content:"Tu n'as pas de lootbox !", fetchReply:true});
                 user_data.lootbox--;
                 var drop_embed = new EmbedBuilder()
                     .setAuthor({ name:"Tu obtiens..", iconURL:interaction.user.avatarURL() });
                 
                 await interaction.reply({content:"Ouverture de la lootbox.."});
-                for (var i = 0; i < 3; i++)
+                for (var i = 0; i < 4; i++)
                 {
                     await utilitary.sleep(2000);
-                    if (i == 2) cards = Object.keys(cards).reduce((obj, key) => { if (cards[key].rarity > 2) obj[key] = cards[key]; return obj; }, {});
-                    var card = utilitary.randomChoice(cards);
+                    
+                    var card;
+                    if (i == 3) card = utilitary.randomChoice(Object.keys(cards).reduce((obj, key) => { if (!user_data.cards.includes(key)) obj[key] = cards[key]; return obj; }, {}));
+                    else card = utilitary.randomChoice(cards);
                     if (user_data.cards.includes(card)) 
                     {
-                        drop_embed.setDescription(`**${cards[card].name}** (déjà possédée) (tu gagnes 25 pièces)`)
+                        drop_embed.setDescription(`**${cards[card].name}** (déjà possédée) (tu gagnes 20 pièces)`)
                         .setImage(null);
-                        user_data.coins += 25;
+                        user_data.coins += 20;
                     } else {
                         user_data.cards.push(card);
                         if (cards[card].rarity == 1) drop_embed.setColor("#FFFFFF");

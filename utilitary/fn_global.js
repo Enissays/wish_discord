@@ -17,7 +17,7 @@ module.exports =
     randomChoice(object)
     {
         var keys = Object.keys(object);
-        return keys[Math.floor(keys.length * Math.random())]
+        return keys[Math.floor(keys.length * Math.random())];
     },
     getRandom(min, max)
     {

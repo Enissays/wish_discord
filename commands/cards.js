@@ -12,9 +12,10 @@ module.exports = {
             .addSubcommand(subcommand => subcommand.setName('list').setDescription("Affiche toutes tes cartes"))
             .addSubcommand(subcommand => subcommand.setName('info').setDescription("Affiche les informations d'une carte")
                                                     .addStringOption(option => option.setName('nom').setDescription("Le nom de la carte")))
-            .addSubcommand(subcommand => subcommand.setName('default').setDescription("Réinitialise ton deck")
-                                                    
-            ),
+            .addSubcommand(subcommand => subcommand.setName('default').setDescription("Réinitialise ton deck"))
+            .addSubcommand(subcommand => subcommand.setName('search').setDescription("Recherche une carte")
+                                                    .addStringOption(option => option.setName('nom').setDescription("Le nom de la carte")),
+                                                    ),
 
     async execute(interaction, client, udata) {
         var user_data = ranks.getRanks(interaction.user, udata);
@@ -27,7 +28,8 @@ module.exports = {
                 var actual_display = new EmbedBuilder()
                     .setTitle(`${cards[user_data.cards[0]].name}`)
                     .setDescription(cards[user_data.cards[0]].description)
-                    .setFooter({text:`Carte de ${user_data.nickname}`, iconURL:interaction.user.avatarURL()});
+                    .setImage(cards[user_data.cards[0]].img)
+                    .setFooter({text:`Carte de ${user_data.nickname} / Progression : ${user_data.cards.length}/${Object.keys(cards).length} (${Math.round(user_data.cards.length/Object.keys(cards).length*100)}%)`, iconURL:interaction.user.avatarURL()})
 
                 var right_button = new ButtonBuilder()
                     .setCustomId("right")
@@ -50,7 +52,7 @@ module.exports = {
                 var row = new ActionRowBuilder()
                     .addComponents(left_button, right_button, add_to_deck_button, remove_from_deck_button);
 
-                var message = await interaction.reply({embeds:[actual_display], components:[row], ephemeral:true});
+                var message = await interaction.reply({embeds:[actual_display], components:[row]});
                 const collectorFilter = i => i.user.id === interaction.user.id;
                 const collector = message.createMessageComponentCollector({ filter: collectorFilter, time: 60000 });
                 collector.on('collect', async i => {
@@ -62,7 +64,7 @@ module.exports = {
                         else actual_card_index--;
                     }
                     else if (i.customId === 'add_to_deck') {
-                        if (user_data.deck.length >= 5) return i.reply({content:"Ton deck est déjà plein !", ephemeral:true});
+                        if (user_data.deck.length >= 10) return i.reply({content:"Ton deck est déjà plein !", ephemeral:true});
                         if (user_data.deck.includes(user_data.cards[actual_card_index])) return i.reply({content:"Cette carte est déjà dans ton deck !", ephemeral:true});
                         user_data.deck.push(user_data.cards[actual_card_index]);
                         udata.set(interaction.user.id, user_data);
@@ -104,9 +106,23 @@ module.exports = {
                 if (!user_data.cards.includes("heal_default")) user_data.cards.push("heal_default");
                 if (!user_data.cards.includes("default")) user_data.cards.push("default");
                 if (!user_data.cards.includes("mana_reload_default")) user_data.cards.push("mana_reload_default");
-                if (!user_data.cards.includes("belbonbon")) user_data.cards.push("belbonbon");
                 udata.set(interaction.user.id, user_data);
                 interaction.reply({content:"Ton deck a été réinitialisé, tu possèdes désormais les quatres cartes par défaut !"});
+                break;
+
+            case "search":
+                // Affiche la première carte qui contient le nom recherché
+                var card_name = interaction.options.getString("nom");
+                var card_key = Object.keys(cards).find(c => cards[c].name.includes(card_name));
+                if (card_key == undefined) return interaction.reply({content:"Aucune carte ne correspond à ta recherche !", ephemeral:true});
+                var card = cards[card_key];
+                console.log(card_key, cards, card);
+                var embed_info = new EmbedBuilder()
+                    .setTitle(card.name)
+                    .setDescription(card.description)
+                    .setImage(card.img)
+                    .setFooter({text:`Coût : ${card.mana} mana `});
+                interaction.reply({embeds:[embed_info]});
                 break;
         }
     }

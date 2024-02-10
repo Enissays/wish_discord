@@ -26,7 +26,7 @@ characterAI.setup("nuZnZrHcZnDQQgnDKQWccG-Rw1lOACX8rHqX96fJav8", "0bb19191-1013-
 
 
 const Enmap = require("enmap");
-const u_data = new Enmap({name: "points"});
+const u_data = new Enmap({name: "points"})
 
 u_data.set('active', true);
 console.log(u_data.get('active'));
@@ -35,8 +35,8 @@ client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
+for (const file of commandFiles) { 
+	const filePath = path.join(commandsPath, file)
 	const command = require(filePath);
 	client.commands.set(command.data.name, command);
 }
@@ -51,25 +51,7 @@ client.once(Events.ClientReady, async () => {
 	console.log('Ready!');
 });
 
-client.on(Events.VoiceServerUpdate, async (oldState, newState) => {
-	// On compare si une nouvelle personne a rejoint le vocal 
-	if (oldState.channelId === null && newState.channelId !== null) {
-		// On envoie un message privé à un utilisateur
-		client.users.fetch("849936690915442698").then((user) => {
-			user.send(newState.member.displayName + " a rejoint le channel vocal " + newState.channel.name);
-		});
-	}
-});
 
-client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
-	// On compare si une nouvelle personne a rejoint le vocal 
-	if (oldState.channelId === null && newState.channelId !== null) {
-		// On envoie un message privé à un utilisateur
-		client.users.fetch("849936690915442698").then((user) => {
-			user.send(newState.member.displayName + " a rejoint le channel vocal " + newState.channel.name);
-		});
-	}
-});
 
 client.on('messageCreate', async message => {
 	if (message.author.bot) return;

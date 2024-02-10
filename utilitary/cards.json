@@ -4,7 +4,7 @@
         "name" : "Attaque d'Alex",
         "dmg" : 10,
         "description" : "L'attaque par défaut à l'effigie d'Alex ?? WESH.\nRetire 10 dégâts à l'ennemi.",
-        "mana" : 10,
+        "mana" : 5,
         "rarity" : 1,
         "img" : "https://i.imgur.com/n5xFrOT.png"
     },
@@ -14,7 +14,7 @@
         "name" : "Soin de Kasu",
         "heal" : 10,
         "description" : "Le soin par Kasu par défaut, depuis quand elle peut faire ça ?? HEIN.\nSoigne 10 points de vie.",
-        "mana" : 10,
+        "mana" : 6,
         "rarity" : 1,
         "img" : "https://i.imgur.com/lzreCOD.png"
     },
@@ -24,7 +24,7 @@
         "name" : "Garde d'océ",
         "shield" : 10,
         "description" : "La garde par défaut, c'est pas ouf mais ça peut servir.\nProtège de 10 points de dégâts.",
-        "mana" : 10,
+        "mana" : 8,
         "rarity" : 1,
         "img" : "https://i.imgur.com/HAzxdLd.png"
     },
@@ -43,9 +43,9 @@
     "casa" : 
     {
         "name" : "Conduite à Casa",
-        "dmg" : 50,
-        "description" : "La conduite à Casa, c'est pas pour tout le monde hein.\nInflige 50 dégâts à l'ennemi contre un coût de 40 manas.",
-        "mana" : 40,
+        "dmg" : 30,
+        "description" : "La conduite à Casa, c'est pas pour tout le monde hein.\nInflige 30 dégâts à l'ennemi contre un coût de 20 manas.",
+        "mana" : 20,
         "rarity" : 3,
         "line" : "ATTENTION.. WESH ??? 🚗🚗🚗",
         "img" : "https://i.imgur.com/E5md5HF.png"
@@ -59,7 +59,7 @@
         "description" : "Le mot interdit d'Ader, je me demande ce que c'est... ?\nInflige 5 dégâts à l'ennemi et le paralyse contre un coût de 10 manas.",
         "mana" : 10,
         "rarity" : 2,
-        "line" : "Ader : les gars euh n",
+        "line" : "Ader : les gars euh n-",
         "img" : "https://i.imgur.com/2hPr8aG.png"
     },
 
@@ -68,7 +68,7 @@
         "name" : "Ta gueule Tom",
         "dmg" : 15,
         "description" : "Ta gueule Tom",
-        "mana" : 5,
+        "mana" : 9,
         "rarity" : 3,
         "img" : "https://i.imgur.com/758Nz5z.png"
     },
@@ -80,14 +80,14 @@
         "description" : "Tu viens de recevoir un fanart de la part d'Alyssa ?? Banger !!\nSoigne 20 points de vie contre un coût de 15 manas.",
         "mana" : 15,
         "rarity" : 2,
-        "img" : "https://i.imgur.com/W3V0wSM.png"
+        "img" : "https://i.imgur.com/CFHWxyX.png"
     },
     "phrase_ia" : 
     {
         "name" : "La phrase elle a été écrite par une IA",
         "stun": 1,
         "mana_reload" : 10,
-        "self_pv" : 10,
+        "self_pv" : 5,
         "description" : "Hein j'ai pas compris\nMême moi\nParalyse l'ennemi et recharge 10 points de mana contre un coût de 5 manas et 10 hp.",
         "mana" : 5,
         "rarity" : 1,
@@ -108,7 +108,7 @@
         "name" : "Voc avec que des meufs",
         "atk_buff" : 1.2,
         "description" : "Sale bâtaaaard, t'es en voc avec que des meufs là ?? Bon appetit chef.\nMultiplie tes dégâts par x1.2 contre un coût de 20 manas.",
-        "mana" : 20,
+        "mana" : 15,
         "rarity" : 4,
         "img" : "https://i.imgur.com/ivpWaKz.png"
     },
@@ -116,8 +116,8 @@
     {
         "name" : "Oulah, quoi?? J'ai pas écouté dsl sinon j'ai sorti un nouveau son, vs voulez écouter??",
         "def_buff" : 1.2,
-        "description" : "J'adore Orelsan, vous savez.. ?\nMultiplie ta défense par x1.2 contre un coût de 5 manas.",
-        "mana" : 5,
+        "description" : "J'adore Orelsan, vous savez.. ?\nMultiplie ta défense par x1.2 contre un coût de 15 manas.",
+        "mana" : 15,
         "rarity" : 4,
         "img" : "https://i.imgur.com/9kbJq7T.png"
     },
@@ -136,17 +136,17 @@
     {
         "name" : "AAAAAAAAARGH",
         "effect" : "loud",
-        "description" : "**FRERE C'EST BON PAS LA PEINE DE GUEULER !!**\nTOUT LE JEU PARLE EN MAJUSCULE ET EN PRIME, ETOURDIT TON ENNEMI, COÛTE 6 MANAS !!",
+        "description" : "**FRERE C'EST BON PAS LA PEINE DE GUEULER !!**\nTOUT LE JEU PARLE EN MAJUSCULE ET EN PRIME, ETOURDIT TON ENNEMI, COÛTE 5 MANAS !!",
         "stun" : 1,
         "rarity" : 4,
         "line" : "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "mana" : 6,
+        "mana" : 5,
         "img" : "https://i.imgur.com/6T7nL6a.png" 
     },
     "neuille" :
     {
         "name" : "Tête de neuille va",
-        "dmg" : 5,
+        "dmg" : 11,
         "description" : "Tête de neuille va\nInflige 5 dégâts à l'ennemi contre un coût de 6 manas.",
         "mana" : 6,
         "rarity" : 1,
@@ -158,8 +158,8 @@
         "dmg" : 10,
         "self_stun" : 1,
         "heal_buff" : 1.2,
-        "description" : "Jamais je ne quitte ce lit perso\nInflige 30 dégâts à l'ennemi et te paralyse contre un coût de 15 manas, renforce tes soins de x1.2",
-        "mana" : 15,
+        "description" : "Jamais je ne quitte ce lit perso\nInflige 10 dégâts à l'ennemi et te paralyse contre un coût de 11 manas, renforce tes soins de x1.2",
+        "mana" : 11,
         "rarity" : 2,
         "img" : "https://i.imgur.com/jkhZUUp.png"
     },
@@ -175,11 +175,130 @@
     "i_asked" :
     {
         "name" : "J'ai demandé",
-        "description" : "Contre-attaque la carte \"J'ai pas demandé par contre ???\", renforce tes dégâts de x1.7 contre un coût de 60 manas.",
-        "dmg_buff" : 1.7,
-        "mana" : 60,
+        "description" : "Contre-attaque la carte \"J'ai pas demandé par contre ???\", renforce tes dégâts de x2 contre un coût de 30 manas.",
+        "dmg_buff" : 2,
+        "mana" : 30,
         "rarity" : 5,
-        "counters" : ["didnt_ask"]
-        
+        "counters" : ["didnt_ask"]    
+    },
+    "sourdine" : 
+    {
+        "name" : "Sourdine",
+        "description" : "Tu peux te mettre en sourdine vite fait ?? On parle de spoils là \nCache la carte jouée par l'ennemi, contre un coût de 15 manas",
+        "mana" : 10,
+        "rarity" : 3,
+        "effect" : "mute",
+        "img" : "https://i.imgur.com/TjwuMF3.png"
+    },
+    "ader" : 
+    {
+        "name" : "Ader",
+        "description" : "**CARTE PERSONNAGE À USAGE UNIQUE**\nTe rend invulnérable aux stuns.",
+        "rarity" : 6,
+        "unique" : true,
+        "effect" : "ader",
+        "mana" : 20,
+        "img" : "https://i.imgur.com/BTggMqV.png"
+    },
+    "naam" : 
+    {
+        "name": "NAAM !?",
+        "description" : "Attendez ma mère m'appelle je crois ? ",
+        "rarity" : 1,
+        "self_stun" : 1,
+        "dmg" : 30,
+        "mana" : 15,
+        "img" : "https://i.imgur.com/OxQsoij.png",
+        "line" : "NAAM ??"
+    },
+    "cancel" : 
+    {
+        "name" : "08/11",
+        "description" : "C'est l'anniversaire de qui ça déjà... ? \nAnnule la prochaine carte et l'empêche de passer le tour",
+        "rarity" : 2,
+        "effect" : "cancel",
+        "img" : "https://i.imgur.com/Zue6Sxa.png",
+        "mana" : 15
+    },
+    "yas" : 
+    {
+        "name" : "Yas et le vol de vie",
+        "description" : "\"Tes dégâts sont mes soins!!\"\nInflige 8 dégâts et soigne 4 points de vie, le renforcement de l'attaque renforce également les vies accumulées ",
+        "rarity" : 3,
+        "heal_steal" : 8,
+        "mana" : 10,
+        "line" : "Je me permets~ ❤️",
+        "img" : "https://i.imgur.com/0xD9lu6.png"
+    },
+    "minor" : 
+    {
+        "name" : "Il y'a une mineure en jeu",
+        "description" : "Vas-y Alec bonne chance mon frère\nil y a une mineure en jeu...\nRenforce tes dégâts de 1.6, mais baisse ta défense de 0.8",
+        "rarity" : 3,
+        "atk_buff" : 1.6,
+        "def_buff" : 0.8,
+        "mana" : 15,
+        "img" : "https://i.imgur.com/0ttMi1o.png"
+    },
+    "not_a_pave" : 
+    {
+        "name" : "Je vais pas écrire un pavé mais",
+        "description" : "Beaucoup de mots mashaallah, laissez le finir d'abord les frr\nStun l'ennemi pendant 1 tour et te rajoute 5 points de bouclier",
+        "rarity" : 2,
+        "stun" : 1,
+        "shield" : 5,
+        "mana" : 10,
+        "img" : "https://i.imgur.com/hEO0fBw.png"
+    },
+    "ahh_ahh" : 
+    {
+        "name" : "L'incident du 1/0 France-Maroc",
+        "description" : "Ah je vais me faire plaisir hein\nTe soigne de 30 points de vie mais te stun pendant 1 tour",
+        "rarity" : 3,
+        "heal" : 30,
+        "self_stun" : 1,
+        "mana" : 20,
+        "img" : "https://i.imgur.com/sX0QrBd.png"
+    },
+    "eni" : 
+    {
+        "name" : "Eni",
+        "description" : "**CARTE PERSONNAGE À USAGE UNIQUE**\nRetire une carte aléatoirement du deck ennemi.\nCoûte 20 manas.",
+        "rarity" : 6,
+        "unique" : true,
+        "effect" : "eni",
+        "mana" : 20,
+        "line" : "Intéressant, mais ça donnerait quoi si on te retirait ça ?",
+        "img" : "https://i.imgur.com/hAcOwq7.png"
+    },
+    "charte_taille" : 
+    {
+        "name" : "#charte_des_tailles",
+        "description" : "Compare ta taille avec l'ennemi, si tes manas sont inférieurs à celui de l'ennemi, tu gagnes 20 points de vie contre 5 manas",
+        "rarity" : 3,
+        "heal" : 20,
+        "mana" : 5,
+        "img" : "https://i.imgur.com/6z97wvE.png",
+        "condition" : "mana"
+    },
+    "backup" : 
+    {
+        "name" : "Mais arrête de désinformer",
+        "description" : "**LEGENDAIRE** Mais frère arrête de désinformer ?? C'est vrmt pas arrivé pour le coup\nFais reculer le jeu d'un tour contre 30 manas et te met ton tour, la carte ne fera pas reculer les effets ratés, ni les changements sur ton deck (comme les cartes retirées par Eni)",
+        "rarity" : 6,
+        "effect" : "backup",
+        "mana" : 30,
+        "img" : "https://i.imgur.com/hDyXFBn.png",
+        "line" : "Je crois pas que ce soit arrivé pour le coup"
+    },
+    "coupe" : 
+    {
+        "name" : "La coupe de merde d'Alex",
+        "description" : "Premier degré je crois que le coiffeur ne m'a jamais autant raté là?? Je suis abattu\nStun l'ennemi pendant 3 tours contre 50 manas",
+        "rarity" : 5,
+        "stun" : 3,
+        "mana" : 50,
+        "img" : "https://i.imgur.com/4DJ2Gt6.png",
+        "line" : "Mais frère c'est quoi cette coupe ??"
     }
 }

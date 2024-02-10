@@ -1,0 +1,48 @@
+{
+    "julien" : 
+    {
+        "name" : "Julien",
+        "description" : "Salut moi c'est Julien",
+        "cards" : ["default", "heal_default", "mana_reload_default", "shield_default"],
+        "level" : 1,
+        "stats" : 
+        {
+            "hp" : 30
+        },
+        "playing_line" : "À moi de jouer !"
+    },
+    "juliette" : 
+    {
+        "name" : "Juliette",
+        "description" : "Salut moi c'est Juliette",
+        "cards" : ["default", "heal_default", "mana_reload_default", "shield_default"] ,
+        "level" : 1,
+        "stats" : 
+        {
+            "hp" : 30
+        },
+        "playing_line" : "À moi de jouer ! Hihi.."
+    },
+    "ader" : {
+        "name" : "Ader",
+        "description" : "PETIT MEEEEEEEEEDR",
+        "cards" : ["ader", "ader_stun", "casa", "didnt_ask"],
+        "level" : 2,
+        "stats" : 
+        {
+            "hp" : 50
+        },
+        "playing_line" : "PETIT MEEEEEEEEEEDR"
+    },
+    "alex" : {
+        "name" : "Alex",
+        "description" : "Salut moi c'est Alex",
+        "cards" : ["default", "heal_default", "phrase_ia", "shield_default", "tg_tom"],
+        "level" : 2,
+        "stats" : 
+        {
+            "hp" : 40
+        },
+        "playing_line" : "Ok pas mal, à moi maintenant !"
+    }
+}
