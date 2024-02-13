@@ -48,6 +48,11 @@ module.exports =
             game_data[user_id].hp -= card.self_pv;
             game_data.log.push(`**${game_data[user_id].name}** s'est infligé **${card.self_pv}** points de vie !`);
         }
+        if (card.buff_buff) 
+        {
+            game_data[user_id].buff.buff = card.buff_buff;
+            game_data.log.push(`Les renforcements de **${game_data[user_id].name}** sont maintenant multipliés par **${card.buff_buff}** !`);
+        }
         if (card.self_stun) 
         {
             game_data[user_id].effects.stun = card.self_stun;
@@ -60,13 +65,13 @@ module.exports =
         }
         if (card.atk_buff)
         {
-            game_data[user_id].buff.atk *= card.atk_buff;
+            game_data[user_id].buff.atk *= (card.atk_buff * (game_data[user_id].buff.buff || 1));
             game_data.log.push(`**${game_data[user_id].name}** a augmenté son attaque de **${card.atk_buff}** fois !`);
         }
 
         if (card.def_buff)
         {
-            game_data[user_id].buff.def *= card.def_buff;
+            game_data[user_id].buff.def *= (card.def_buff * (game_data[user_id].buff.buff || 1));
             game_data.log.push(`**${game_data[user_id].name}** a augmenté sa défense de **${card.def_buff}** fois !`);
         }
         if (card.stun) 
@@ -77,7 +82,7 @@ module.exports =
         }
         if (card.heal_buff)
         {
-            game_data[user_id].buff.heal *= card.heal_buff;
+            game_data[user_id].buff.heal *= (card.heal_buff * (game_data[user_id].buff.buff || 1));
             game_data.log.push(`**${game_data[user_id].name}** a augmenté ses soins de **${card.heal_buff}** fois !`);
         }
         if (card.heal) 
@@ -172,7 +177,7 @@ module.exports =
     addCheevo(cheevo, user_data, channel, avatar)
     {
         if (!user_data.cheevos) user_data.cheevos = [];
-        if (user_data.cheevos.includes(cheevo)) return;
+        if (user_data.cheevos.includes(cheevo)) return user_data;
         var cheevo_data = cheevos[cheevo];
         var embed = new EmbedBuilder()
             .setAuthor({name:user_data.nickname + " vient de débloquer un nouveau succès !!", iconURL:avatar})

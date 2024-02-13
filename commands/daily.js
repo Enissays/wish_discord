@@ -22,7 +22,7 @@ module.exports = {
         const nb_points = utilitary.getRandom(50, 200);
         user_data = ranks.addXp(nb_points, user_data, interaction.channel);
         user_data.daily = Date.now();
-        interaction.reply({content:`${user_data.nickname} vient de récupérer ${nb_points} xp oniriques! (Et une lootbox en plus!!) \n*${utilitary.getRandomList(phrases)}*`});
+        interaction.reply({content:`${user_data.nickname} vient de récupérer ${nb_points} xp oniriques en plus de **50 pièces**! (Et une lootbox en plus!!) \n*${utilitary.getRandomList(phrases)}*`});
 
         // Lootbox add
         if (!user_data.lootbox) user_data.lootbox = 0;

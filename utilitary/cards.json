@@ -170,7 +170,7 @@
         "description" : "Lâche le poulet abderrahim tu joues à quoi ?? \nParalyse l'ennemi **deux fois** contre un coût de 25 manas.", 
         "mana" : 25,
         "rarity" : 3,
-        "img" : "https://i.imgur.com/GT9unKo.png"
+        "img" : "https://i.imgur.com/GT9unKo.gif"
     },
     "i_asked" :
     {
@@ -300,5 +300,69 @@
         "mana" : 50,
         "img" : "https://i.imgur.com/4DJ2Gt6.png",
         "line" : "Mais frère c'est quoi cette coupe ??"
+    },
+    "i_thought" : {
+        "name" : "Le pire c'est que j'y pensais",
+        "description" : "Non mais premier degré j'hésitais à en parler et tout mais bon vu que tu l'as dit\n**LEGENDAIRE** Couvre cette carte et fais croire à l'ennemi que t'as joué une autre carte, puis annule la carte jouée par l'ennemi en lui faisant quand même la dépense de manas",
+        "rarity" : 6,
+        "effect" : "i_thought",
+        "mana" : 40
+    },
+    "tg_tom_2" : 
+    {
+        "name" : "Ta gueule Tom 2",
+        "description" : "Ta gueule Tom",
+        "dmg" : 20,
+        "mana" : 15,
+        "rarity" : 3,
+        "img" : "https://i.imgur.com/5cIQgkE.png"
+    },
+    "sidi_khalkhal" : 
+    {
+        "name" : "Sidi Khalkhal",
+        "description" : "Bondagani, Al'Haj el'Outmani, DRAAA, sidi khalkhal\nAugmente ta défense de 1.4 et ton attaque de 1.4",
+        "def_buff" : 1.4,
+        "atk_buff" : 1.4,
+        "mana" : 40,
+        "rarity" : 5,
+        "img" : "https://i.imgur.com/ySA86vF.png"
+    },
+    "eni_strong" : 
+    {
+        "name" : "Le renforcement d'Eni",
+        "description" : "Attends, j'te laisse du temps pour te préparer, t'as compris ce que je t'explique au moins ?\nRenforce n'importe renforcement de tes cartes de 1.2 supplémentaire contre 20 manas",
+        "rarity" : 4,
+        "buff_buff" : 1.2,
+        "mana" : 20,
+        "img" : "https://i.imgur.com/aS0bxum.png"
+    },
+    "alex_merde_ramadan" : 
+    {
+        "name" : "La gaffe du ramadan d'Alex",
+        "description" : "Miam le bon poulet quoi???\nTe stun pendant 1 tour mais renforce tes dégâts de 1.5",
+        "rarity" : 4,
+        "stun" : 1,
+        "dmg_buff" : 1.5,
+        "mana" : 20,
+        "img" : "https://i.imgur.com/0w7E26Q.png"
+    },
+    "robinet_double_chaud_froid" : {
+        "name" : "Le robinet double chaud/froid",
+        "description" : "Le robinet double chaud/froid\nTe soigne de 20 points de vie et te paralyse pendant 1 tour",
+        "rarity" : 3,
+        "heal" : 20,
+        "self_stun" : 1,
+        "mana" : 15,
+        "img" : "https://i.imgur.com/3jxOWVs.png"
+    },
+    "non_cheval" : {
+        "name" : "NOON LE CHEVAL",
+        "description" : "NOON LE CHEVAL\nTe paralyse pendant 2 tours mais renforce tes dégâts de 2",
+        "rarity" : 5,
+        "stun" : 2,
+        "dmg_buff" : 2,
+        "mana" : 25,
+        "img" : "https://i.imgur.com/96rKWRK.gif"
     }
+    
 }
