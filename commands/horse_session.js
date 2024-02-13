@@ -131,12 +131,12 @@ function start_horse(interaction, udata, id, client) {
         for (var horse of horses_datas)
         {
             if (Math.random() > 0.5) horse.position++;
-            horse_msg += `🟩 ${get_dashes(horse.position, 20, horse.emoji)}\n`;
-            if (horse.position >= 20) {
+            horse_msg += `🟩 ${get_dashes(horse.position, 60, horse.emoji)}\n`;
+            if (horse.position >= 60) {
                 horse.win = true;
                 console.log(horse);
                 clearInterval(interval);
-                horses_data.delete(data.hosted_horse);
+                if (data.hosted_horse) horses_data.delete(data.hosted_horse);
                 data.hosted_horse = null;
                 udata.set(interaction.user.id, data);
                 var all_winners = "";
