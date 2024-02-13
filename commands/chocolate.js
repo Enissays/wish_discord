@@ -40,7 +40,7 @@ module.exports = {
                     data_user.warning = true;
                 });
 
-                interaction.reply({content:`(${actual.get} reçu) Chocolat envoyé ! Il t'en reste ${actual.left} a donner! ${warning}`,ephemeral:true})
+                interaction.followUp({content:`(${actual.get} reçu) Chocolat envoyé ! Il t'en reste ${actual.left} a donner! ${warning}`,ephemeral:true})
 
                 u_data.set(give_user.id, data_user);
                 u_data.set(interaction.user.id, actual);
