@@ -5,6 +5,8 @@ var Enmap = require('enmap');
 const ranks = require("./utilitary/fn_ranks.js");
 const cards = require("./utilitary/cards.json");
 
-const u_data = new Enmap({name: "chocolates"});
+const u_data = new Enmap({name: "new_chocolates"});
 
-u_data.set("849936690915442698",{get:0,left:3,user:"849936690915442698"});
+var user_data = u_data.get("191272823170269184");
+user_data.left = 1;
+u_data.set("191272823170269184", user_data);
