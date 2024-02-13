@@ -14,6 +14,29 @@ module.exports =
             game_data.cancel = null;
             return game_data.log.push(`**${game_data[user_id].name}** a joué **${card.name}** mais son effet a été annulé !`);
         }
+
+        if (card.luck) 
+        {
+            var luck_calc = Math.random();
+            if (luck_calc < card.luck)
+            {
+                // Donne tous les effets contenus à l'intérieur de card.success
+                for (var effect of card.success)
+                {
+                    card[effect] = card.success[effect];
+                }
+                game_data.log.push(`**${game_data[user_id].name}** a joué **${card.name}** et a eu de la chance !`);
+            }
+            else
+            {
+                // Donne tous les effets contenus à l'intérieur de card.fail
+                for (var effect of card.fail)
+                {
+                    card[effect] = card.fail[effect];
+                }
+                game_data.log.push(`**${game_data[user_id].name}** a joué **${card.name}** et n'a pas eu de chance !`);
+            }
+        }
         if (card.effect == "backup")
         {
             if (!game_data.backup) return game_data.log.push(`**${game_data[user_id].name}** a joué **${card.name}** mais il n'y a pas de sauvegarde à restaurer !`);

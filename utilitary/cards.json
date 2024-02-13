@@ -363,6 +363,27 @@
         "dmg_buff" : 2,
         "mana" : 25,
         "img" : "https://i.imgur.com/96rKWRK.gif"
+    },
+    "casino" : {
+        "name" : "Casino",
+        "description" : "Allez, on joue un tour !\nAprès le jeu de cette carte, tu as 70% de chance de renforce tes dégâts de 1.2 et de stun l'ennemi pendant 1 tour, en revanche, tu possèdes un risque de 30% de chance de te paralyser pendant 1 tour",
+        "rarity" : 4,
+        "luck" : 0.7,
+        "mana" : 20,
+        "success" : {
+            "dmg_buff" : 1.2,
+            "stun" : 1
+        },
+        "failure" : {
+            "self_stun" : 1
+        },
+        "img" : "https://i.imgur.com/0ViCnJT.png"
+    },
+    "amongus" : {
+        "name" : "Hein",
+        "description" : "La forme de la carte elle vous rappelle pas un truc??",
+        "rarity" : 1,
+        "mana" : 5,
+        "img" : "https://i.imgur.com/TapwAKN.png"
     }
-    
 }
