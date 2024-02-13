@@ -131,8 +131,8 @@ function start_horse(interaction, udata, id, client) {
         for (var horse of horses_datas)
         {
             if (Math.random() > 0.5) horse.position++;
-            horse_msg += `🟩 ${get_dashes(horse.position, 10, horse.emoji)}\n`;
-            if (horse.position >= 10) {
+            horse_msg += `🟩 ${get_dashes(horse.position, 20, horse.emoji)}\n`;
+            if (horse.position >= 20) {
                 horse.win = true;
                 console.log(horse);
                 clearInterval(interval);
@@ -147,13 +147,13 @@ function start_horse(interaction, udata, id, client) {
                     var user_data = ranks.getRanks(user, udata);
                     if (horse_data.participants[id] == horses_datas.indexOf(horse)+1) {
                         ranks.addCheevo("win_first_horse_race", user_data, interaction.channel, user.avatarURL());
-                        user_data.coins += 40;
+                        user_data.coins += 60;
                         all_winners += `${user.username} `;
                         udata.set(user.id, user_data);
                     }
                 }
                 interaction.followUp({content:`Le ${horse.emoji} a gagné !`});
-                interaction.followUp({content:`Les gagnants sont : ${all_winners} (+40 pièces)`});
+                interaction.followUp({content:`Les gagnants sont : ${all_winners} (+60 pièces)`});
 
 
 
