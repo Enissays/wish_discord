@@ -37,6 +37,7 @@ function getGain(a, b, c, d) {
 function getMessage(gain) 
 {
     if (gain == 1000) return "JACKBOT! Tu as gagné **1000 pièces!**";
+    if (gain == 100) return "Super! Tu as gagné 100 pièces!";
     if (gain == 150) return "Génial! Tu as gagné 150 pièces!";
     if (gain == 50) return "Félicitations! Tu as gagné 50 pièces!";
     if (gain == 30) return "Bravo! Tu as gagné 30 pièces!";
