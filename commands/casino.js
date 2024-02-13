@@ -29,7 +29,7 @@ function getGain(a, b, c, d) {
     console.log(doublesCount);
     if (max == 4) return 1000;
     if (max == 3) return 100;
-    if (doublesCount == 4) return 50;
+    if (doublesCount == 4) return 100;
     if (max == 2) return 30;
     if (max == 1) return 10;
 }

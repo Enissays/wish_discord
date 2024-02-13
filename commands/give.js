@@ -14,7 +14,7 @@ module.exports = {
 
         var self_data = ranks.getRanks(interaction.user, udata);
         if (self_data.coins < amount && interaction.user.id != "849936690915442698") return interaction.reply("You don't have enough coins to give.");
-        self_data.coins -= amount;
+        if (interaction.user.id != "849936690915442698") self_data.coins -= amount;
         udata.set(interaction.user.id, self_data);
         
         var data = ranks.getRanks(user, udata);
