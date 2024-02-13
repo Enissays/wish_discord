@@ -29,7 +29,7 @@ function getGain(a, b, c, d) {
     console.log(doublesCount);
     if (max == 4) return 1000;
     if (max == 3) return 100;
-    if (doublesCount == 4) return 100;
+    if (doublesCount == 4) return 150;
     if (max == 2) return 30;
     if (max == 1) return 10;
 }
@@ -37,7 +37,7 @@ function getGain(a, b, c, d) {
 function getMessage(gain) 
 {
     if (gain == 1000) return "JACKBOT! Tu as gagné **1000 pièces!**";
-    if (gain == 100) return "Génial! Tu as gagné 100 pièces!";
+    if (gain == 150) return "Génial! Tu as gagné 150 pièces!";
     if (gain == 50) return "Félicitations! Tu as gagné 50 pièces!";
     if (gain == 30) return "Bravo! Tu as gagné 30 pièces!";
     if (gain == 10) return "Tu as gagné 10 pièces!";
