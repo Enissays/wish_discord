@@ -131,8 +131,8 @@ function start_horse(interaction, udata, id, client) {
         for (var horse of horses_datas)
         {
             if (Math.random() > 0.5) horse.position++;
-            horse_msg += `🟩 ${get_dashes(horse.position, 60, horse.emoji)}\n`;
-            if (horse.position >= 60) {
+            horse_msg += `🟩 ${get_dashes(horse.position, 30, horse.emoji)}\n`;
+            if (horse.position >= 30) {
                 horse.win = true;
                 console.log(horse);
                 clearInterval(interval);
