@@ -1,6 +1,6 @@
 const Enmap = require("enmap");
 
-const u_data = new Enmap({name: "chocolates"});
+const u_data = new Enmap({name: "new_chocolates"});
 //u_data.deleteAll();
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events } = require('discord.js');
 const { SlashCommandBuilder } = require('discord.js');
@@ -28,7 +28,7 @@ module.exports = {
                 if (actual.left <= 0) return interaction.reply({content:"Tu n'as plus de chocolats!", ephemeral:true});
                 const give_user = interaction.options.getUser('target');
                 if (give_user.id == interaction.user.id) return interaction.reply({content:'Tu ne peux pas te donner du chocolat a toi-même!', ephemeral:true});
-                var data_user = u_data.ensure(give_user.id, {get:0,left:2,user:give_user.id});
+                var data_user = u_data.ensure(give_user.id, {get:0,left:3,user:give_user.id});
                 data_user.get++;
                 actual.left--;
                 var warning = "";
