@@ -31,14 +31,14 @@ module.exports = {
                 var data_user = u_data.ensure(give_user.id, {get:0,left:2,user:give_user.id});
                 data_user.get++;
                 actual.left--;
-
-                interaction.reply({content:`(${actual.get} reçu) Chocolat envoyé ! Il t'en reste ${actual.left} a donner!`,ephemeral:true})
+                var warning = "";
 
                 give_user.send(`Tu viens de recevoir un chocolat ! Tu en possède **${data_user.get}** maintenant ! ${data_user.get == 1 ? "\nC'est la première fois que tu reçois ce message ! Si tu comprends pas trop ce que ça veut dire, dirige-toi ici https://discord.com/channels/875839479590567946/902632945544753253/1207050145938669630" : ""}`).catch(() => {
-                    interaction.followUp({content:`Précision : Cette personne a désactivé ces messages privés, elle ne sera donc pas mise au courant, ou prévenue quand elle utilisera la commande elle-même`,ephemeral:true})
+                    warning = `Précision : Cette personne a désactivé ces messages privés, elle ne sera donc pas mise au courant, ou prévenue quand elle utilisera la commande elle-même`;
                     data_user.warning = true;
                 });
 
+                interaction.reply({content:`(${actual.get} reçu) Chocolat envoyé ! Il t'en reste ${actual.left} a donner! ${warning}`,ephemeral:true})
 
                 u_data.set(give_user.id, data_user);
                 u_data.set(interaction.user.id, actual);
