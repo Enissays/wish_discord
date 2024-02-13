@@ -1,192 +1,229 @@
 const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require('discord.js');
 const ranks = require("../utilitary/fn_ranks.js");
 const Enmap = require('enmap');
+var horses_data = new Enmap({name: "horses"});
 var utilitary = require("../utilitary/fn_global.js");
+const horses = [
+    {
+        "name" : "Cheval 1",
+        "emoji" : "🐎",
+    }
+    ,{
+        "name" : "Cheval 2",
+        "emoji" : "🐴",
+    }
+    ,{
+        "name" : "Cheval 3",
+        "emoji" : "🦄",
+    }
+    ,{
+        "name" : "Cheval 4",
+        "emoji" : "🐲",
+    }
+];
 
-const sessions = new Enmap({ name: "rocket_sessions" });
-
-function createRocketSession(interaction, udata, client) {
+function create_horse(interaction, udata, client) {
     const data = ranks.getRanks(interaction.user, udata);
-    if (data.rocket_session) return interaction.reply("Tu ne peux pas créer une session de fusée si tu en as déjà une!");
+    if (data.hosted_horse) return interaction.reply("Tu ne peux pas participer à une course de chevaux si tu en héberges déjà une!");
+    var id = utilitary.makeid(10);
+    data.hosted_horse = id;
 
-    const sessionId = utilitary.makeid(10);
-    const sessionData = {
-        participants: {},
-        startTime: Date.now(),
-        explosionTime: Date.now() + 60000, // 60 secondes de délai avant l'explosion
-        multiplier: 1
-    };
+    horses_data.set(id,
+        {
+            participants : {}
+        });
 
-    sessions.set(sessionId, sessionData);
-    data.rocket_session = sessionId;
-    udata.set(interaction.user.id, data);
-
-    const joinButton = new ButtonBuilder()
-        .setCustomId('join_rocket')
-        .setLabel('Rejoindre')
+    var button_horse_1 = new ButtonBuilder()
+        .setCustomId('horse_1')
+        .setLabel('Cheval 1')
         .setStyle(1);
 
-    const betButton = new ButtonBuilder()
-        .setCustomId('bet_rocket')
-        .setLabel('Miser')
+    var button_horse_2 = new ButtonBuilder()
+        .setCustomId('horse_2')
+        .setLabel('Cheval 2')
         .setStyle(1);
 
-    const withdrawButton = new ButtonBuilder()
-        .setCustomId('withdraw_rocket')
-        .setLabel('Retirer')
+    var button_horse_3 = new ButtonBuilder()
+        .setCustomId('horse_3')
+        .setLabel('Cheval 3')
         .setStyle(1);
 
-    const row = new ActionRowBuilder()
-        .addComponents(joinButton, betButton, withdrawButton);
+    var button_horse_4 = new ButtonBuilder()
+        .setCustomId('horse_4')
+        .setLabel('Cheval 4')
+        .setStyle(1);
 
-    const embed = new EmbedBuilder()
+    var start_button = new ButtonBuilder()
+        .setCustomId('start_horse')
+        .setLabel('Démarrer')
+        .setStyle(4);
+
+    var row = new ActionRowBuilder()
+        .addComponents(button_horse_1, button_horse_2, button_horse_3, button_horse_4, start_button);
+
+    var embed = new EmbedBuilder()
         .setColor(0x0099FF)
-        .setTitle('Session de fusée')
-        .setDescription(`Rejoignez la session de fusée !\n\nSession ID : ${sessionId}\n\nTemps restant avant l'explosion : 60 secondes\n\nMultiplicateur actuel : 1x`);
+        .setTitle('Course de chevaux')
+        .setDescription('Participez à une course de chevaux ! Coût : 20 pièces\nChoisissez votre cheval !\n\nChevaux disponibles :\n\n🐎 Cheval 1\n🐴 Cheval 2\n🦄 Cheval 3\n🐲 Cheval 4')
+        .setFooter({text:`Course de chevaux n°${id}`});
 
-    interaction.reply({ embeds: [embed], components: [row] });
-}
-
-function joinRocketSession(interaction, udata, sessionId) {
-    const data = ranks.getRanks(interaction.user, udata);
-    if (!sessions.has(sessionId)) return interaction.reply("Cette session de fusée n'existe pas!");
-    if (data.rocket_session) return interaction.reply("Tu as déjà rejoint une session de fusée!");
-
-    const sessionData = sessions.get(sessionId);
-    sessionData.participants[interaction.user.id] = {
-        bet: 0,
-        withdraw: false
-    };
-    sessions.set(sessionId, sessionData);
-
-    interaction.reply({ content: "Tu as rejoint la session de fusée avec succès!", ephemeral: true });
-}
-
-function betRocketSession(interaction, udata, sessionId, amount) {
-    const data = ranks.getRanks(interaction.user, udata);
-    if (!sessions.has(sessionId)) return interaction.reply("Cette session de fusée n'existe pas!");
-    if (!sessions.get(sessionId).participants[interaction.user.id]) return interaction.reply("Tu n'as pas rejoint cette session de fusée!");
-
-    const sessionData = sessions.get(sessionId);
-    const participantData = sessionData.participants[interaction.user.id];
-
-    if (participantData.bet > 0) return interaction.reply("Tu as déjà misé dans cette session de fusée!");
-    if (data.coins < amount) return interaction.reply("Tu n'as pas assez de pièces pour miser ce montant!");
-
-    data.coins -= amount;
-    participantData.bet = amount;
-    sessions.set(sessionId, sessionData);
+    interaction.reply({embeds:[embed], components:[row]});
     udata.set(interaction.user.id, data);
 
-    interaction.reply({ content: `Tu as misé ${amount} pièces dans la session de fusée!`, ephemeral: true });
-}
-
-function withdrawRocketSession(interaction, udata, sessionId) {
-    const data = ranks.getRanks(interaction.user, udata);
-    if (!sessions.has(sessionId)) return interaction.reply("Cette session de fusée n'existe pas!");
-    if (!sessions.get(sessionId).participants[interaction.user.id]) return interaction.reply("Tu n'as pas rejoint cette session de fusée!");
-
-    const sessionData = sessions.get(sessionId);
-    const participantData = sessionData.participants[interaction.user.id];
-
-    if (participantData.withdraw) return interaction.reply("Tu as déjà retiré ton pari de cette session de fusée!");
-
-    const multiplier = sessionData.multiplier;
-    const winnings = participantData.bet * multiplier;
-
-    data.coins += winnings;
-    participantData.withdraw = true;
-    sessions.set(sessionId, sessionData);
-    udata.set(interaction.user.id, data);
-
-    interaction.reply({ content: `Tu as retiré ton pari de ${participantData.bet} pièces avec un multiplicateur de ${multiplier}x! Tu as gagné ${winnings} pièces!`, ephemeral: true });
-}
-
-function checkRocketSession(interaction, udata, sessionId) {
-    if (!sessions.has(sessionId)) return interaction.reply("Cette session de fusée n'existe pas!");
-
-    const sessionData = sessions.get(sessionId);
-    const currentTime = Date.now();
-
-    if (currentTime >= sessionData.explosionTime) {
-        // La fusée a explosé
-        const participants = sessionData.participants;
-        const multiplier = sessionData.multiplier;
-
-        for (const userId in participants) {
-            const participantData = participants[userId];
-            if (!participantData.withdraw) {
-                const data = ranks.getRanks(userId, udata);
-                const lostAmount = participantData.bet * multiplier;
-                data.coins -= lostAmount;
-                udata.set(userId, data);
-            }
+    var collector = interaction.channel.createMessageComponentCollector({time: 60000});
+    collector.on('collect', async i => {
+        if (i.customId == 'start_horse') {
+            start_horse(i, udata, id, client);
+            collector.stop();
+        } else {
+            var horse = i.customId.split('_')[1];
+            join_horse(i, udata, horse, id);
         }
+    });
+};
 
-        sessions.delete(sessionId);
-        return interaction.reply("La fusée a explosé! Tous les paris non retirés ont été perdus.");
+function join_horse(interaction, udata, horse, id) {
+    const data = ranks.getRanks(interaction.user, udata);
+    var horse_data = horses_data.get(id);
+    if (data.coins < 20) return interaction.reply("Tu n'as pas assez de pièces pour participer à cette course de chevaux! (20 nécessaires)");
+    data.coins -= 20;
+    udata.set(interaction.user.id, data);
+    if (!horse_data) return interaction.reply("Cette course de chevaux n'existe pas!");
+    if (horse_data.participants[interaction.user.id]) return interaction.reply("Tu as déjà choisi un cheval!");
+    horse_data.participants[interaction.user.id] = horse;
+    horses_data.set(id, horse_data);
+    interaction.reply({content:`Tu as choisi le ${horses[horse-1].name} !`, ephemeral:true});
+}
+
+function get_dashes(position, length, emoji)
+{
+    var dashes = "";
+    for (var i = 0; i < length; i++)
+    {
+        if (i == position) dashes += emoji;
+        else dashes += "-";
+    }
+    return dashes + "🏁";
+}
+
+function start_horse(interaction, udata, id, client) {
+    const data = ranks.getRanks(interaction.user, udata);
+    var horse_data = horses_data.get(data.hosted_horse);
+    console.log(horse_data);
+    if (!horse_data) return interaction.reply("Cette course de chevaux n'existe pas!");
+    var horse_msg = "";
+    var horses_datas = [];
+    for (var i = 0; i < horses.length; i++)
+    {
+        horses_datas.push({position:0, emoji:horses[i].emoji, win:false});
     }
 
-    const timeRemaining = Math.ceil((sessionData.explosionTime - currentTime) / 1000);
-    const embed = new EmbedBuilder()
-        .setColor(0x0099FF)
-        .setTitle('Session de fusée')
-        .setDescription(`Rejoignez la session de fusée !\n\nSession ID : ${sessionId}\n\nTemps restant avant l'explosion : ${timeRemaining} secondes\n\nMultiplicateur actuel : ${sessionData.multiplier}x`);
+    var horse_msg = "";
+    for (var horse of horses_datas)
+    {
+        horse_msg += `${horse.emoji} ${get_dashes(horse.position, 10, horse.emoji)}\n`;
+    }
 
-    interaction.reply({ embeds: [embed] });
+    interaction.reply({content:horse_msg});
+
+    interval = setInterval(async () => {
+        var horse_msg = "";
+        for (var horse of horses_datas)
+        {
+            if (Math.random() > 0.5) horse.position++;
+            horse_msg += `🟩 ${get_dashes(horse.position, 10, horse.emoji)}\n`;
+            if (horse.position >= 10) {
+                horse.win = true;
+                console.log(horse);
+                clearInterval(interval);
+                horses_data.delete(data.hosted_horse);
+                data.hosted_horse = null;
+                udata.set(interaction.user.id, data);
+                var all_winners = "";
+                console.log(horses_datas.indexOf(horse)+1);
+                for (var id in horse_data.participants)
+                {
+                    var user = await client.users.cache.get(id);
+                    var user_data = ranks.getRanks(user, udata);
+                    if (horse_data.participants[id] == horses_datas.indexOf(horse)+1) {
+                        ranks.addCheevo("win_first_horse_race", user_data, interaction.channel, user.avatarURL());
+                        user_data.coins += 40;
+                        all_winners += `${user.username} `;
+                        udata.set(user.id, user_data);
+                    }
+                }
+                interaction.followUp({content:`Le ${horse.emoji} a gagné !`});
+                interaction.followUp({content:`Les gagnants sont : ${all_winners} (+40 pièces)`});
+
+
+
+            }
+        }
+        interaction.editReply({content:horse_msg});
+    }
+    , 1000);
+
+
 }
+
+
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('rocket_session')
-        .setDescription('Crée ou rejoint une session de fusée')
+        .setName('course_chevaux')
+        .setDescription('Participez à une course de chevaux ! Coût : 20 pièces')
         .addSubcommand(subcommand =>
             subcommand
                 .setName('create')
-                .setDescription('Crée une session de fusée')
+                .setDescription('Crée une course de chevaux')
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('join')
-                .setDescription('Rejoins une session de fusée')
-                .addStringOption(option => option.setName('session_id').setDescription('L\'ID de la session de fusée').setRequired(true))
+                .setDescription('Rejoins une course de chevaux')
+                .addNumberOption(option => option.setName('cheval').setDescription('Le numéro du cheval à rejoindre').setRequired(true))
+                .addStringOption(option => option.setName('course').setDescription('Le numéro de la course à rejoindre').setRequired(true))
         )
         .addSubcommand(subcommand =>
             subcommand
-                .setName('bet')
-                .setDescription('Mise dans une session de fusée')
-                .addStringOption(option => option.setName('session_id').setDescription('L\'ID de la session de fusée').setRequired(true))
-                .addIntegerOption(option => option.setName('amount').setDescription('Le montant à miser').setRequired(true))
+                .setName('start')
+                .setDescription('Démarre la course de chevaux')
+                .addStringOption(option => option.setName('course').setDescription('Le numéro de la course à démarrer').setRequired(true))
         )
         .addSubcommand(subcommand =>
             subcommand
-                .setName('withdraw')
-                .setDescription('Retire le pari d\'une session de fusée')
-                .addStringOption(option => option.setName('session_id').setDescription('L\'ID de la session de fusée').setRequired(true))
+                .setName('cancel')
+                .setDescription('Annule la course de chevaux')
         )
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('check')
-                .setDescription('Vérifie l\'état d\'une session de fusée')
-                .addStringOption(option => option.setName('session_id').setDescription('L\'ID de la session de fusée').setRequired(true))
-        ),
+
+        ,
     async execute(interaction, client, udata) {
-        switch (interaction.options.getSubcommand()) {
-            case 'create':
-                createRocketSession(interaction, udata, client);
-                break;
-            case 'join':
-                joinRocketSession(interaction, udata, interaction.options.getString('session_id'));
-                break;
-            case 'bet':
-                betRocketSession(interaction, udata, interaction.options.getString('session_id'), interaction.options.getInteger('amount'));
-                break;
-            case 'withdraw':
-                withdrawRocketSession(interaction, udata, interaction.options.getString('session_id'));
-                break;
-            case 'check':
-                checkRocketSession(interaction, udata, interaction.options.getString('session_id'));
-                break;
+        switch (interaction.options.getSubcommand())
+        {
+            case 'create' : 
+                create_horse(interaction, udata, client);
+            break;
+            case 'join' : 
+                join_horse(interaction, udata, interaction.options.getInteger('cheval'), interaction.options.getString('course'));
+            break;
+            case 'start' : 
+                start_horse(interaction, udata, interaction.options.getString('course'), client);
+            break;
+            case 'cancel' : 
+                const data = ranks.getRanks(interaction.user, udata);
+                if (!data.hosted_horse) return interaction.reply("Tu n'héberges pas de course de chevaux !");
+                horses_data.delete(data.hosted_horse);
+                data.hosted_horse = null;
+                interaction.reply("Course de chevaux annulée !");
+                udata.set(interaction.user.id, data);
+            break;
         }
+
+
+        
+        
+
+        
+
     }
 };
