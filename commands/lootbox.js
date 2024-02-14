@@ -2,8 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder } = r
 const utilitary = require('../utilitary/fn_global');
 const ranks = require('../utilitary/fn_ranks');
 const Enmap = require("enmap");
-var cards = require('../utilitary/cards.json');
-cards = Object.keys(cards).reduce((obj, key) => { if (!cards[key].unrollable) obj[key] = cards[key]; return obj; }, {});
+var true_cards = require('../utilitary/cards.json');
+cards = Object.keys(true_cards).reduce((obj, key) => { if (!cards[key].unrollable) obj[key] = cards[key]; return obj; }, {});
 const arena_data = new Enmap({name: "arena"});
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
         switch (interaction.options.getSubcommand())
         {
             case "open":
-                if (user_data.cards.length >= Object.keys(cards).length) {
+                if (user_data.cards.length >= Object.keys(true_cards).length) {
                     user_data = ranks.addCheevo("how_did_we_get_here", user_data, interaction.channel, interaction.user.avatarURL()); 
                     udata.set(interaction.user.id, user_data); 
                     return interaction.reply({content:"Tu possèdes déjà toutes les cartes !", fetchReply:true});
