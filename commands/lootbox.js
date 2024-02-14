@@ -3,7 +3,7 @@ const utilitary = require('../utilitary/fn_global');
 const ranks = require('../utilitary/fn_ranks');
 const Enmap = require("enmap");
 var cards = require('../utilitary/cards.json');
-cards = Object.keys(cards).reduce((obj, key) => { if (!obj[key].unrollable) obj[key] = cards[key]; return obj; }, {});
+cards = Object.keys(cards).reduce((obj, key) => { if (!cards[key].unrollable) obj[key] = cards[key]; return obj; }, {});
 const arena_data = new Enmap({name: "arena"});
 
 module.exports = {
