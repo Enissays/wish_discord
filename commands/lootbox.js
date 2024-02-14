@@ -29,7 +29,7 @@ module.exports = {
                 
                 var drop_embed = new EmbedBuilder()
                     .setAuthor({ name:user_data.nickname + " vient d'obtenir :", iconURL:interaction.user.avatarURL() });
-                
+                var cards = true_cards;
                 await interaction.reply({content:"**Ouverture de la lootbox..**"});
                 for (var i = 0; i < 4; i++)
                 {
