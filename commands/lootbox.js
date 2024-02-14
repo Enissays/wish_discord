@@ -3,6 +3,7 @@ const utilitary = require('../utilitary/fn_global');
 const ranks = require('../utilitary/fn_ranks');
 const Enmap = require("enmap");
 var cards = require('../utilitary/cards.json');
+cards = Object.keys(cards).reduce((obj, key) => { if (!obj[key].unrollable) obj[key] = cards[key]; return obj; }, {});
 const arena_data = new Enmap({name: "arena"});
 
 module.exports = {
@@ -25,10 +26,11 @@ module.exports = {
                 }
                 if (user_data.lootbox == undefined || user_data.lootbox <= 0) return interaction.reply({content:"Tu n'as pas de lootbox !", fetchReply:true});
                 user_data.lootbox--;
-                var drop_embed = new EmbedBuilder()
-                    .setAuthor({ name:"Tu obtiens..", iconURL:interaction.user.avatarURL() });
                 
-                await interaction.reply({content:"Ouverture de la lootbox.."});
+                var drop_embed = new EmbedBuilder()
+                    .setAuthor({ name:user_data.nickname + " vient d'obtenir :", iconURL:interaction.user.avatarURL() });
+                
+                await interaction.reply({content:"**Ouverture de la lootbox..**"});
                 for (var i = 0; i < 4; i++)
                 {
                     await utilitary.sleep(2000);

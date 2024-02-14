@@ -15,6 +15,16 @@ module.exports =
             return game_data.log.push(`**${game_data[user_id].name}** a joué **${card.name}** mais son effet a été annulé !`);
         }
 
+        if (card.uses) 
+        {
+            if (game_data[user_id].uses) 
+            {
+                if (game_data[user_id].uses[card_id] >= card.uses) return game_data.log.push(`**${game_data[user_id].name}** a joué **${card.name}** mais il ne peut plus l'utiliser !`);
+                game_data[user_id].uses[card_id]++;
+            }
+            else game_data[user_id].uses = {[card_id]:1};
+
+        }
         if (card.luck) 
         {
             var luck_calc = Math.random();
@@ -66,6 +76,15 @@ module.exports =
             game_data[opponent_id].hp -= steal_calc;
             game_data.log.push(`**${game_data[user_id].name}** a volé **${steal_calc/2}** points de vie et en à infligé **${steal_calc}** à **${game_data[opponent_id].name}** !`);
         }
+
+        if (card.opp_heal) 
+        {
+            var heal_calc = Math.round(card.opp_heal * game_data[opponent_id].buff.heal);
+            game_data[opponent_id].hp += heal_calc;
+            if (game_data[opponent_id].hp > 100) game_data[opponent_id].hp = 100;
+            game_data.log.push(`**${game_data[opponent_id].name}** a gagné **${heal_calc}** points de vie !`);
+        }
+
         if (card.self_pv)
         {
             game_data[user_id].hp -= card.self_pv;

@@ -12,13 +12,17 @@ module.exports = {
             subcommand
                 .setName('give')
                 .setDescription('Donne un chocolat')
-                .addUserOption(option => option.setName('target').setDescription('L\'utilisateur a qui donner le chocolat'))
+                .addUserOption(option => option.setName('target').setDescription('L\'utilisateur a qui donner le chocolat').setRequired(true))
                 )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('show')
                 .setDescription('Montre tout tes chocolats')
-            ),
+            )
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('leaderboard')
+                .setDescription('Affiche le classement de ceux qui ont reçu le plus de chocolats')),
         async execute(interaction, client) {
         var actual = u_data.ensure(interaction.user.id, {get:0,left:3,user:interaction.user.id});
         if (!actual) actual = model;
