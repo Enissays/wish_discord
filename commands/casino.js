@@ -5,9 +5,14 @@ var phrases = ["Mais bon, t'as pas envie de t'arrêter là, non?"
               ,"Tu peux pas t'arrêter maintenant! Recommence!"
               ,"Tu vas pas t'arrêter maintenant, si?"
               ,"Allez, une dernière fois!"
-              ,"Recommence allez!"]
+              ,"Recommence allez!"
+              , "Tu vas pas t'arrêter là, si?"
+              , "Ouh, je sens le jackpot arriver! Recommence!"
+              , "Oh! Tu vas pas t'arrêter maintenant!"
+              , "Le gros lot est pour bientôt! Recommence!"
+            ]
 
-var emojis = ["🍒","🍋","🍇","🍉","🍓","🍍","🍑","🍊","🍐","🍎"];
+var emojis = ["🍒","🍋","🍇","🍉","🍓","🍍","💖","🍊","🍐","🍎"];
 
 function getGain(a, b, c, d) {
     var max = 0;
@@ -27,6 +32,7 @@ function getGain(a, b, c, d) {
     }
 
     console.log(doublesCount);
+    if (max == 4 && list[0] == 6) return 2000;
     if (max == 4) return 1000;
     if (max == 3) return 100;
     if (doublesCount == 4) return 150;
@@ -36,6 +42,7 @@ function getGain(a, b, c, d) {
 
 function getMessage(gain) 
 {
+    if (gain == 2000) return "**ULTRA JACKBOT !** Tu as gagné **2000 pièces!**";
     if (gain == 1000) return "JACKBOT! Tu as gagné **1000 pièces!**";
     if (gain == 100) return "Super! Tu as gagné 100 pièces!";
     if (gain == 150) return "Génial! Tu as gagné 150 pièces!";

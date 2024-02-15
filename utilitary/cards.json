@@ -429,7 +429,8 @@
         "heal" : 10,
         "def_buff" : 1.2,
         "mana" : 10,
-        "img" : "https://i.imgur.com/t3GjAII.png"
+        "img" : "https://i.imgur.com/t3GjAII.png",
+        "line" : "Nyan !! 🐱"
     },
     "bdg" : {
         "name" : "BDG",

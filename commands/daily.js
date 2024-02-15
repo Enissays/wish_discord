@@ -1,7 +1,20 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const utilitary = require('../utilitary/fn_global');
 const ranks = require('../utilitary/fn_ranks');
-
+var phrases = [
+        "Tu vas bien au fait ?",
+        "Bien dormi ?",
+        "Oublie pas le prochain daily !!",
+        "On est bien là non ?",
+        "Et si t'essayais un nouveau plat aujourd'hui ?",
+        "Tu as déjà vu un chat voler ?",
+        "N'hésite pas à faire de l'exercice !",
+        "MAIS QUELLE EST CETTE MELODIE ?",
+        "*soupir*",
+        "Regarde derrière toi",
+        "Et si tu commencais un nouveau livre ?",
+        "Tu me recommendes quoi comme musique au fait ?"
+];
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('daily')
@@ -11,14 +24,7 @@ module.exports = {
         var user_data = ranks.getRanks(interaction.user, udata);
 
         if (date - user_data.daily < 86400000) return interaction.reply({content:`Tu as déjà récupéré ta récompense quotidienne ! (Temps restant : ${utilitary.msToTime(86400000 - (date - user_data.daily))})`});
-        var phrases = [
-                "Tu vas bien au fait ?",
-                "Bien dormi ?",
-                "Oublie pas le prochain daily !!",
-                "On est bien là non ?",
-                "Et si t'essayais un nouveau plat aujourd'hui ?",
-                "Tu as déjà vu un chat voler ?"
-        ]
+
         const nb_points = utilitary.getRandom(50, 200);
         user_data = ranks.addXp(nb_points, user_data, interaction.channel);
         user_data.coins += 50;

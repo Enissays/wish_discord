@@ -19,7 +19,7 @@ module.exports = {
         switch (interaction.options.getSubcommand())
         {
             case "open":
-                if (user_data.cards.length >= Object.keys(true_cards).length) {
+                if (user_data.cards.length >= Object.keys(cards).length) {
                     user_data = ranks.addCheevo("how_did_we_get_here", user_data, interaction.channel, interaction.user.avatarURL()); 
                     udata.set(interaction.user.id, user_data); 
                     return interaction.reply({content:"Tu possèdes déjà toutes les cartes !", fetchReply:true});

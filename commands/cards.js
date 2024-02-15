@@ -76,10 +76,12 @@ module.exports = {
                         udata.set(interaction.user.id, user_data);
                         return i.reply({content:`La carte ${cards[user_data.cards[actual_card_index]].name} a été retirée de ton deck !`, ephemeral:true});
                     }
-                    actual_display.setTitle(`${cards[user_data.cards[actual_card_index]].name}`)
+                    actual_display
+                        .setAuthor({name:`Carte possédée par ${user_data.nickname}`, iconURL:interaction.user.avatarURL()})
+                        .setTitle(`${cards[user_data.cards[actual_card_index]].name}`)
                         .setDescription(cards[user_data.cards[actual_card_index]].description)
                         .setImage(cards[user_data.cards[actual_card_index]].img)
-                        .setFooter({text:`Coût : ${cards[user_data.cards[actual_card_index]].mana} mana | Carte de ${user_data.nickname}`, iconURL:interaction.user.avatarURL()});
+                        .setFooter({text:`Coût : ${cards[user_data.cards[actual_card_index]].mana} mana | Page ${actual_card_index+1}/${Object.keys(cards).length-1} | ${(user_data.deck.includes(user_data.cards[actual_card_index]) ? "Dans le deck" : "Non équipée")}`, iconURL:interaction.user.avatarURL()});
                     await i.update({embeds:[actual_display]});
                 });
                 collector.on('end', collected => {
