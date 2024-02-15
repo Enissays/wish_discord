@@ -19,7 +19,7 @@ module.exports = {
         switch (interaction.options.getSubcommand())
         {
             case "open":
-                if (user_data.cards.length >= Object.keys(cards).length) {
+                if (user_data.cards.length >= Object.keys(true_cards).length) {
                     user_data = ranks.addCheevo("how_did_we_get_here", user_data, interaction.channel, interaction.user.avatarURL()); 
                     udata.set(interaction.user.id, user_data); 
                     return interaction.reply({content:"Tu possèdes déjà toutes les cartes !", fetchReply:true});
@@ -37,6 +37,7 @@ module.exports = {
                     var card;
                     if (i == 3) card = utilitary.randomChoice(Object.keys(cards).reduce((obj, key) => { if (!user_data.cards.includes(key)) obj[key] = cards[key]; return obj; }, {}));
                     else card = utilitary.randomChoice(cards);
+                    if (card == undefined) card = "default";
                     if (user_data.cards.includes(card)) 
                     {
                         drop_embed.setDescription(`**${cards[card].name}** (déjà possédée) (tu gagnes 20 pièces)`)
