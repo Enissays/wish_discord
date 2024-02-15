@@ -80,7 +80,7 @@ module.exports = {
         interaction.reply("C'est parti! 🎰");
         for (var i = 0; i < 4; i++)
         {
-            await new Promise(r => setTimeout(r, 1000 * (mise/10)));
+            await new Promise(r => setTimeout(r, mise > 50 ? 5000 : 1000 * (mise/10)));
             interaction.editReply(messages[i]);
             if (i == 3) await interaction.editReply(messages[i] + "\n" + message + "\n" + phrases[Math.floor(Math.random()*phrases.length)]);
         }
