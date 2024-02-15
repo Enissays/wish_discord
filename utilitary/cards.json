@@ -16,7 +16,8 @@
         "description" : "Le soin par Kasu par défaut, depuis quand elle peut faire ça ?? HEIN.\nSoigne 10 points de vie.",
         "mana" : 6,
         "rarity" : 1,
-        "img" : "https://i.imgur.com/lzreCOD.png"
+        "img" : "https://i.imgur.com/lzreCOD.png",
+        "girl" : true
     },
 
     "shield_default" : 
@@ -26,7 +27,8 @@
         "description" : "La garde par défaut, c'est pas ouf mais ça peut servir.\nProtège de 10 points de dégâts.",
         "mana" : 8,
         "rarity" : 1,
-        "img" : "https://i.imgur.com/HAzxdLd.png"
+        "img" : "https://i.imgur.com/HAzxdLd.png",
+        "girl" : true
     },
 
     "mana_reload_default" : 
@@ -80,7 +82,8 @@
         "description" : "Tu viens de recevoir un fanart de la part d'Alyssa ?? Banger !!\nSoigne 20 points de vie contre un coût de 15 manas.",
         "mana" : 15,
         "rarity" : 2,
-        "img" : "https://i.imgur.com/CFHWxyX.png"
+        "img" : "https://i.imgur.com/CFHWxyX.png",
+        "girl" : true
     },
     "phrase_ia" : 
     {
@@ -110,7 +113,8 @@
         "description" : "Sale bâtaaaard, t'es en voc avec que des meufs là ?? Bon appetit chef.\nMultiplie tes dégâts par x1.2 contre un coût de 20 manas.",
         "mana" : 15,
         "rarity" : 4,
-        "img" : "https://i.imgur.com/ivpWaKz.png"
+        "img" : "https://i.imgur.com/ivpWaKz.png",
+        "girl" : true
     },
     "son_rap" : 
     {
@@ -130,7 +134,8 @@
         "line" : "Hola, soy Belbonbon, el mejor jugador de este juego.",
         "mana" : 0,
         "unique" : true,
-        "img" : "https://i.imgur.com/KdaFMHj.png"
+        "img" : "https://i.imgur.com/KdaFMHj.png",
+        "girl" : true
     },
     "loud" : 
     {
@@ -228,7 +233,8 @@
         "heal_steal" : 8,
         "mana" : 10,
         "line" : "Je me permets~ ❤️",
-        "img" : "https://i.imgur.com/0xD9lu6.png"
+        "img" : "https://i.imgur.com/0xD9lu6.png",
+        "girl" : true
     },
     "minor" : 
     {
@@ -238,7 +244,8 @@
         "atk_buff" : 1.6,
         "def_buff" : 0.8,
         "mana" : 15,
-        "img" : "https://i.imgur.com/0ttMi1o.png"
+        "img" : "https://i.imgur.com/0ttMi1o.png",
+        "girl" : true
     },
     "not_a_pave" : 
     {
@@ -413,5 +420,24 @@
         "mana" : 20,
         "img" : "https://i.imgur.com/f9W1DkH.png",
         "unrollable" : true
+    },
+    "catto" : 
+    {
+        "name" : "Piti cha",
+        "description" : "Nyan ! C'est mwa !! Non désolé j'ai aucune ref cette fois\nSoigne 10 points de vie et renforce ta défense de 1.2",
+        "rarity" : 3,
+        "heal" : 10,
+        "def_buff" : 1.2,
+        "mana" : 10,
+        "img" : "https://i.imgur.com/t3GjAII.png"
+    },
+    "bdg" : {
+        "name" : "BDG",
+        "description" : "Vous aviez pas remarqué que la différence du ton est flagrante quand c'est une meuf ??\nRenforce tes dégâts de 1.5 et ta défense de 1.5, la carte ne fonctionne pas si la carte précédente est une carte qui contenait une fille",
+        "rarity" : 4,
+        "atk_buff" : 1.5,
+        "def_buff" : 1.5,
+        "mana" : 20,
+        "img" : "https://i.imgur.com/0B7WM5s.png"
     }
 }

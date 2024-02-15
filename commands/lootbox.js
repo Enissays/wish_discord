@@ -3,7 +3,7 @@ const utilitary = require('../utilitary/fn_global');
 const ranks = require('../utilitary/fn_ranks');
 const Enmap = require("enmap");
 var true_cards = require('../utilitary/cards.json');
-cards = Object.keys(true_cards).reduce((obj, key) => { if (!true_cards[key].unrollable) obj[key] = true_cards[key]; return obj; }, {});
+var cards = Object.keys(true_cards).reduce((obj, key) => { if (!true_cards[key].unrollable) obj[key] = true_cards[key]; return obj; }, {});
 const arena_data = new Enmap({name: "arena"});
 
 module.exports = {
@@ -29,7 +29,6 @@ module.exports = {
                 
                 var drop_embed = new EmbedBuilder()
                     .setAuthor({ name:user_data.nickname + " vient d'obtenir :", iconURL:interaction.user.avatarURL() });
-                var cards = true_cards;
                 await interaction.reply({content:"**Ouverture de la lootbox..**"});
                 for (var i = 0; i < 4; i++)
                 {
