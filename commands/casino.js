@@ -67,7 +67,7 @@ module.exports = {
         data.gave = false;
         gain = getGain(list[0],list[1],list[2],list[3]);
         data.coins += mise*gain;
-        message = getMessage(gain);
+        message = getMessage(gain) + ` Tu gagnes **${mise*gain}** pièces!`;
 
         var messages = [
             `${emojis[list[0]]} 🟩 🟩 🟩`, 
