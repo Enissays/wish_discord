@@ -61,13 +61,14 @@ module.exports = {
         var list = [Math.floor(Math.random()*10),Math.floor(Math.random()*10),Math.floor(Math.random()*10),Math.floor(Math.random()*10)];
         var gain = 0;
         var message = "";
-        var mise = interaction.options.getInteger('mise');
+        var mise = interaction.options.getInteger('mise') || 10;
         if (data.coins < mise) return interaction.reply("Tu n'as pas assez de pièces pour jouer au casino!");
         data.coins -= mise;
         data.gave = false;
         gain = getGain(list[0],list[1],list[2],list[3]);
-        data.coins += mise*gain;
-        message = getMessage(gain) + ` Tu gagnes **${mise*gain}** pièces!`;
+        data.coins += Math.round(mise*gain);
+        if (mise < 10) return interaction.reply("La mise minimale est de 10 pièces!");
+        message = getMessage(gain) + ` Tu gagnes **${Math.round(mise*gain)}** pièces!`;
 
         var messages = [
             `${emojis[list[0]]} 🟩 🟩 🟩`, 
