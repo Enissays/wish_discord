@@ -19,6 +19,12 @@ module.exports =
         {
             if (cards[game_data.last_card].girl) return game_data.log.push(`**${game_data[user_id].name}** a joué **${card.name}** mais l'effet ne fonctionne pas sur une carte contenant une fille !`);
         }
+        if (card.effect == "random")
+        {
+            var effects = ["atk_buff","def_buff","heal_buff","stun","shield","heal","dmg","mana_reload","self_pv","opp_heal","heal_steal"];
+            var effect = effects[Math.floor(Math.random() * effects.length)];
+            card.effect = effect;
+        }
         if (card.uses) 
         {
             if (game_data[user_id].uses) 

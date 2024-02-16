@@ -440,5 +440,21 @@
         "def_buff" : 1.5,
         "mana" : 20,
         "img" : "https://i.imgur.com/qxoaPYI.png"
+    },
+    "chinoiroux" : {
+        "name" : "Vocal confus",
+        "description" : "ça m'irait bien des dreds??? Chi-noi-roux\nUtilise un effet aléatoire sur l'ennemi",
+        "rarity" : 3,
+        "effect" : "random",
+        "mana" : 15,
+        "img" : "https://i.imgur.com/dfQwfxh.png"
+    },
+    "distance_couple" : {
+        "name" : "Les couples à distance",
+        "description" : "\"Oue oue jte refais quand tu veux\" Le couple en question : \nRenforce tes dégâts de 1.5 contre un coût de 20 manas",
+        "rarity" : 4,
+        "atk_buff" : 1.5,
+        "mana" : 20,
+        "img" : "https://i.imgur.com/whgbE7R.png"
     }
 }
