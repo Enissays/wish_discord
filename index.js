@@ -5,9 +5,6 @@ const { Client, Collection, Events, GatewayIntentBits, Partials } = require('dis
 const { token, AUTH_TOKEN } = require('./config.json');
 const { getRandom, getRandomList } = require("./utilitary/fn_global.js");
 
-const private = require('./private.js');
-private.start();
-
 Partials.Channel;
 const client = new Client({
 	'intents': [
