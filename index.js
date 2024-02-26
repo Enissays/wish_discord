@@ -1,9 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, Partials, EmbedBuilder } = require('discord.js');
 
 const { token, AUTH_TOKEN } = require('./config.json');
 const { getRandom, getRandomList } = require("./utilitary/fn_global.js");
+const intros = require("./utilitary/default_intros.json");
+
 
 Partials.Channel;
 const client = new Client({
@@ -55,6 +57,22 @@ client.once(Events.ClientReady, async () => {
 
 client.on('messageCreate', async message => {
 	if (message.author.bot) return;
+
+	if (u_data.get('present')) {
+		var present = u_data.get('present');
+		if (!present.includes(message.author.id)) {
+			var embed = new EmbedBuilder()
+				.setTitle("Nouveau rêveur")
+				.setAuthor(intros[message.author.id] ? intros[message.author.id].name : message.author.username, message.author.displayAvatarURL())
+				.setDescription(intros[message.author.id] ? intros[message.author.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé..")
+				.setFooter("Âge : " + (intros[message.author.id] ? intros[message.author.id].age : "Inconnu"))
+				.setColor("#FF0000")
+
+			message.channel.send({embeds: [embed]});
+			present.push(message.author.id);
+			u_data.set('present', present);
+		}
+	}
 
 	if (message.content.toLowerCase().includes("eni?")) {
 		console.log("Replying...");
