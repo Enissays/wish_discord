@@ -63,7 +63,7 @@ client.on('messageCreate', async message => {
 		if (!present.includes(message.author.id) && message.channel.id == '984475852408496148') {
 			console.log(intros[message.author.id]);
 			var embed = new EmbedBuilder()
-				.setTitle("Nouveau rêveur")
+				.setTitle("J'te présente !")
 				.setAuthor({iconURL: message.author.displayAvatarURL(), name: intros[message.author.id] ? intros[message.author.id].name : message.author.username})
 				.setDescription((intros[user.id] ? intros[user.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé..")  + "\n**Origine :** " + (intros[message.author.id] ? intros[message.author.id].origin : "Inconnue") )
 				.setFooter({text: "Âge : " + (intros[message.author.id] ? intros[message.author.id].age : "Inconnu")})
