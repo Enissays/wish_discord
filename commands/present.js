@@ -10,7 +10,7 @@ module.exports = {
         var user = interaction.options.getUser('user');
         var embed = new EmbedBuilder()
         .setTitle("Présentation")
-        .setAuthor({iconURL: user.displayAvatarURL(), name: intros[user.id] ? intros[user.id].name : user.username})
+        .setAuthor({iconURL: user.avatarURL({ dynamic:true }), name: intros[user.id] ? intros[user.id].name : user.username})
         .setDescription(intros[user.id] ? intros[user.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé..")
         .setFooter({text: "Âge : " + (intros[user.id] ? intros[user.id].age : "Inconnu")})
         .setColor("#FF0000")
