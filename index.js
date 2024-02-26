@@ -60,7 +60,7 @@ client.on('messageCreate', async message => {
 
 	if (u_data.get('present')) {
 		var present = u_data.get('present');
-		if (!present.includes(message.author.id)) {
+		if (!present.includes(message.author.id) && message.channel.id == '984475852408496148') {
 			var embed = new EmbedBuilder()
 				.setTitle("Nouveau rêveur")
 				.setAuthor(intros[message.author.id] ? intros[message.author.id].name : message.author.username, message.author.displayAvatarURL())
