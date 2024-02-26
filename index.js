@@ -61,9 +61,10 @@ client.on('messageCreate', async message => {
 	if (u_data.get('present')) {
 		var present = u_data.get('present');
 		if (!present.includes(message.author.id) && message.channel.id == '984475852408496148') {
+			console.log(intros[message.author.id]);
 			var embed = new EmbedBuilder()
 				.setTitle("Nouveau rêveur")
-				.setAuthor({text: intros[message.author.id] ? intros[message.author.id].name : message.author.username, iconURL: message.author.displayAvatarURL()})
+				.setAuthor({iconURL: message.author.displayAvatarURL(), name: intros[message.author.id] ? intros[message.author.id].name : message.author.username})
 				.setDescription(intros[message.author.id] ? intros[message.author.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé..")
 				.setFooter("Âge : " + (intros[message.author.id] ? intros[message.author.id].age : "Inconnu"))
 				.setColor("#FF0000")
