@@ -2,7 +2,7 @@
     "849936690915442698" : {
         "name" : "Eni",
         "age" : "19",
-        "description" : "Lui, c'est Eni\nC'est le créateur de ce bot, et de ce serveur (le puant originel)\nOn l'appelle Eni, Yassine, ou Enissay, C'est un étudiant Marocain en info qui aime la programmation et l'excentrisme vu qu'apparemment il kiffe se décrire à la troisième personne"
+        "description" : "Lui, c'est Eni\nC'est le créateur de ce bot, et de ce serveur (le puant originel)\nOn l'appelle Eni, Yassine, ou Enissay, \nC'est un étudiant Marocain en info qui aime la programmation et l'excentrisme vu qu'apparemment il kiffe se décrire à la troisième personne"
     },
     "679076920096325643" : {
         "name" : "Tom",
@@ -12,11 +12,11 @@
     "191272823170269184" : {
         "name" : "Darky",
         "age" : "22",
-        "description" : "Lui, c'est Darky, c'est un streamer, et un apprenti développeur, donc un créateur de contenu, en gros, on l'appelle William, ou Darky"
+        "description" : "Lui, c'est Darky, c'est un streamer, et un apprenti développeur, donc un créateur de contenu, en gros, on l'appelle Wiliam, ou Darky"
     },
     "306902723129901056" : {
         "name" : "Kasu",
-        "age" : "19",
+        "age" : "18",
         "description" : "Elle, c'est Kasu, une artiste, et une grosse fan de pjsk et les trucs gacha-related ou dans l'univers Miku."
     },
     "595771475714244613" : {
@@ -33,5 +33,15 @@
         "name" : "Zorm",
         "age" : "22",
         "description" : "Lui, c'est Zorm ^^ Coucou Zooormm ^^"
+    },
+    "320931748592484352" : {
+        "name" : "Alex", 
+        "age" : "19",
+        "description" : "Lui, c'est Alex, ou Alexis, ou Alpha de son pseudo de Joueur ! Un très bon joueur smash assez réputé pour être gentil et très modeste, étudiant en finances (??), il n'hésitera pas à régler toute zone de flou au besoin"
+    },
+    "451058575863840788" : {
+        "name" : "Yas",
+        "age" : "22",
+        "description" : "Elle, c'est Yas, ou Yasmine, une très bonne artiste et une fan des produits Sonic, Jet Set Radio, et tout ce qui tourne dans cette zone."
     }
 }
