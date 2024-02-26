@@ -66,7 +66,7 @@ client.on('messageCreate', async message => {
 				.setTitle("Nouveau rêveur")
 				.setAuthor({iconURL: message.author.displayAvatarURL(), name: intros[message.author.id] ? intros[message.author.id].name : message.author.username})
 				.setDescription(intros[message.author.id] ? intros[message.author.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé..")
-				.setFooter({text: "Âge : " + (intros[message.author.id] ? intros[message.author.id].age : "Inconnu")})
+				.setFooter({text: "Âge : " + (intros[message.author.id] ? intros[message.author.id].age : "Inconnu") + " | Origine : " + (intros[message.author.id] ? intros[message.author.id].origin : "Inconnue") })
 				.setColor("#FF0000")
 
 			message.channel.send({embeds: [embed]});

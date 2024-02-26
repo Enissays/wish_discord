@@ -2,66 +2,85 @@
     "849936690915442698" : {
         "name" : "Eni",
         "age" : "19",
-        "description" : "Lui, c'est Eni\nC'est le créateur de ce bot, et de ce serveur (le puant originel)\nOn l'appelle Eni, Yassine, ou Enissay, \nC'est un étudiant Marocain en info qui aime la programmation et l'excentrisme vu qu'apparemment il kiffe se décrire à la troisième personne"
+        "description" : "Lui, c'est Eni\nC'est le créateur de ce bot, et de ce serveur (le puant originel)\nOn l'appelle Eni, Yassine, ou Enissay, \nC'est un étudiant en info qui aime la programmation et l'excentrisme vu qu'apparemment il kiffe se décrire à la troisième personne",
+        "origin" : ":flag_ma:"
     },
     "679076920096325643" : {
         "name" : "Tom",
         "age" : "19",
-        "description" : "Lui, c'est Tom"
+        "description" : "Lui, c'est Tom, Tominou, Tomtom, Doppito, Doppitox, la Doppitance, les Dopitoes, fan de Kingdom Hearts, de Persona, de Tengoku Daiymakyou, il a plein d'avis tranché sur les animes, et crois-moi, tu ne vas pas aimer.",
+        "origin" : ":flag_fr:"
     },
     "191272823170269184" : {
         "name" : "Darky",
         "age" : "22",
-        "description" : "Lui, c'est Darky, c'est un streamer, et un apprenti développeur et un artiste musical indépendant, donc un créateur de contenu, en gros, on l'appelle Wiliam, ou Darky"
+        "description" : "Lui, c'est Darky, c'est un streamer, et un apprenti développeur et un artiste musical indépendant, donc un créateur de contenu, en gros, on l'appelle Wiliam, ou Darky",
+        "origin" : ":flag_fr:"
     },
     "306902723129901056" : {
         "name" : "Kasu",
         "age" : "18",
-        "description" : "Elle, c'est Kasu, une artiste, et une grosse fan de pjsk et les trucs gacha-related ou dans l'univers Miku."
+        "description" : "Elle, c'est Kasu, une artiste, et une grosse fan de pjsk et les trucs gacha-related ou dans l'univers Miku.",
+        "origin" : ":flag_fr:"
     },
     "595771475714244613" : {
         "name" : "Océ",
         "age" : "18",
-        "description" : "Iel, c'est océ, ou océane, notre artiste suisse locale fan d'un peu beaucoup de trucs, surtout les femmes..?"
+        "description" : "Iel, c'est océ, ou océane, notre artiste suisse locale fan d'un peu beaucoup de trucs, surtout les femmes..?",
+        "origin" : ":flag_ch:"
     },
     "428493492503838721" : {
         "name" : "Didou",
         "age" : "18", 
-        "description" : "Lui, c'est Didou, ou Eddy, passioné d'informatique et d'ordinateurs et aussi de JV, il adore plein de licences, comme les licence Nintendo, FF, KH, etc.."
+        "description" : "Lui, c'est Didou, ou Eddy, passioné d'informatique et d'ordinateurs et aussi de JV, il adore plein de licences, comme les licence Nintendo, FF, KH, etc..",
+        "origin" : ":flag_fr: :flag_dz: :flag_tn:"
     },
     "469102730242424833" : {
         "name" : "Zorm",
         "age" : "22",
-        "description" : "Lui, c'est Zorm ^^ Coucou Zooormm ^^"
+        "description" : "Lui, c'est Zorm ^^ Coucou Zooormm ^^",
+        "origin" : ":flag_fr:"
     },
     "320931748592484352" : {
         "name" : "Alex", 
         "age" : "19",
-        "description" : "Lui, c'est Alex, ou Alexis, ou Alpha de son pseudo de Joueur ! Un très bon joueur smash assez réputé pour être gentil et très modeste, étudiant en finances (??), il n'hésitera pas à régler toute zone de flou au besoin"
+        "description" : "Lui, c'est Alex, ou Alexis, ou Alpha de son pseudo de Joueur ! Un très bon joueur smash assez réputé pour être gentil et très modeste, étudiant en finances (??), il n'hésitera pas à régler toute zone de flou au besoin",
+        "origin" : ":flag_fr: :flag_mu:"
     },
     "451058575863840788" : {
         "name" : "Yas",
         "age" : "22",
-        "description" : "Elle, c'est Yas, ou Yasmine, une très bonne artiste et une fan des produits Sonic, Jet Set Radio, et tout ce qui tourne dans cette zone."
+        "description" : "Elle, c'est Yas, ou Yasmine, une très bonne artiste et une fan des produits Sonic, Jet Set Radio, et tout ce qui tourne dans cette zone.",
+        "origin" : ":flag_fr: :flag_dz:"
     },
     "476127577765838870" : {
         "name" : "Alyssa",
         "age" : "22",
-        "description" : "Elle, c'est Alyssa ou Aly, une artiste une herbe étudiante en illustration et semi-barman ..? Très fan d'Avatar et de la légende de Korra, elle s'intéresse souvent aux oeuvres artistiques indépendantes."
+        "description" : "Elle, c'est Alyssa ou Aly, une artiste en herbe étudiante en illustration et serveuse dans un bar à cocktail\nTrès fan d'Avatar et de la légende de Korra, elle s'intéresse souvent aux oeuvres artistiques indépendantes.",
+        "origin" : ":flag_be:"
     },
     "475353411815211019" : {
         "name" : "Ader",
         "age" : "18",
-        "description" : "Lui, c'est Ader, ou Reda, c'est le cousin d'Eni, avec un humour assez tordu et perché, c'est un étudiant en Archéologie"
+        "description" : "Lui, c'est Ader, ou Reda, c'est le cousin d'Eni, avec un humour assez tordu et perché, c'est un étudiant en Archéologie",
+        "origin" : ":flag_ma:"
     },
     "438343656462745614" : {
         "name" : "Kali",
         "age" : "18",
-        "description" : "Elle, c'est Kali, ou Kalista, c'est une artiste/designer indépendante assez sociable, majoritairement parmi la communauté Splatoon, c'est une étudiante activiste avec une forte liaison au vert"
+        "description" : "Elle, c'est Kali, ou Kalista, c'est une artiste/designer indépendante assez sociable, majoritairement parmi la communauté Splatoon, c'est une étudiante activiste avec une forte liaison au vert",
+        "origin" : ":flag_fr: :flag_dz:"
     },
     "167956055207182336" : {
         "name" : "MiHatsuni",
-        "age" : "J'ai oublié",
-        "description" : "Lui, c'est MiHatsuni, ou Nipo, ou Nicolas, ou MiHats, c'est un daron (littéralement) qui euh.. trade des cartes graphiques, je crois...? "
+        "age" : "16",
+        "description" : "Lui, c'est MiHatsuni, ou Nipo, ou Nicolas, ou MiHats, c'est un daron (littéralement) qui euh.. trade des cartes graphiques, je crois...? ",
+        "origin" : ":flag_be: :flag_fr:"
+    },
+    "327555752275345408" : {
+        "name" : "Listy",
+        "age" : "19",
+        "description" : "Elle, c'est Listy, Kiho, ou Thais, elle peint des avions et c'est grave la classe, c'est notre canadienne locale",
+        "origin" : ":flag_ca: :flag_fr:"
     }
 }
