@@ -15,6 +15,6 @@ module.exports = {
         .setFooter({text: "Âge : " + (intros[user.id] ? intros[user.id].age : "Inconnu")})
         .setColor("#FF0000")
 
-    interaction.reply({embeds: [embed]});
+    interaction.reply({embeds: [embed], ephemeral: true});
     },
 };
