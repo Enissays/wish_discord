@@ -26,7 +26,24 @@ module.exports = {
                                     .setRequired(true)
                             
                         )
-        ),
+        )
+        .addSubcommand(subcommand =>
+            subcommand.setName('bio')
+                        .setDescription('Définis ta description')
+                        .addStringOption((option) =>
+                            option
+                                .setName('description')
+                                .setDescription('Ta description')
+                                .setRequired(true)
+                        )
+        )
+        .addSubcommand(subcommand =>
+            subcommand.setName('show')
+                      .setDescription('Affiche ton profil')
+        )
+
+
+        ,
 	async execute(interaction, client, udata) {
         var user_data = ranks.getRanks(interaction.user, udata);
         switch (interaction.options.getSubcommand())
@@ -50,8 +67,20 @@ module.exports = {
 
             case "show": 
                 
+                var embed = new EmbedBuilder()
+                    .setColor(user_data.color)
+                    .setAuthor({name: user_data.nickname, iconURL: interaction.user.displayAvatarURL({dynamic: true})})
+                    .setDescription(user_data.bio || "J'ai pas de données sur toi, tu devrais te décrire avec la commande /profile bio")
 
+                interaction.reply({embeds: [embed], ephemeral: true});
             break;
+
+            case "bio":
+                var bio_input = interaction.options.getString('description');
+                user_data.bio = bio_input;
+                udata.set(interaction.user.id, user_data);
+                interaction.reply({content: `Ta nouvelle description a été définie en \`\`${bio_input}\`\``, ephemeral: true});
+                break;
         }
 	},
 };
