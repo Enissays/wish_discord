@@ -12,7 +12,7 @@
     "191272823170269184" : {
         "name" : "Darky",
         "age" : "22",
-        "description" : "Lui, c'est Darky, c'est un streamer, et un apprenti développeur, donc un créateur de contenu, en gros, on l'appelle Wiliam, ou Darky"
+        "description" : "Lui, c'est Darky, c'est un streamer, et un apprenti développeur et un artiste musical indépendant, donc un créateur de contenu, en gros, on l'appelle Wiliam, ou Darky"
     },
     "306902723129901056" : {
         "name" : "Kasu",
@@ -43,5 +43,25 @@
         "name" : "Yas",
         "age" : "22",
         "description" : "Elle, c'est Yas, ou Yasmine, une très bonne artiste et une fan des produits Sonic, Jet Set Radio, et tout ce qui tourne dans cette zone."
+    },
+    "476127577765838870" : {
+        "name" : "Alyssa",
+        "age" : "22",
+        "description" : "Elle, c'est Alyssa ou Aly, une artiste une herbe étudiante en illustration et semi-barman ..? Très fan d'Avatar et de la légende de Korra, elle s'intéresse souvent aux oeuvres artistiques indépendantes."
+    },
+    "475353411815211019" : {
+        "name" : "Ader",
+        "age" : "18",
+        "description" : "Lui, c'est Ader, ou Reda, c'est le cousin d'Eni, avec un humour assez tordu et perché, c'est un étudiant en Archéologie"
+    },
+    "438343656462745614" : {
+        "name" : "Kali",
+        "age" : "18",
+        "description" : "Elle, c'est Kali, ou Kalista, c'est une artiste/designer indépendante assez sociable, majoritairement parmi la communauté Splatoon, c'est une étudiante activiste avec une forte liaison au vert"
+    },
+    "167956055207182336" : {
+        "name" : "MiHatsuni",
+        "age" : "J'ai oublié",
+        "description" : "Lui, c'est MiHatsuni, ou Nipo, ou Nicolas, ou MiHats, c'est un daron (littéralement) qui euh.. trade des cartes graphiques, je crois...? "
     }
 }
