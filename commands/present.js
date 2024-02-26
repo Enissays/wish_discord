@@ -11,7 +11,7 @@ module.exports = {
         var embed = new EmbedBuilder()
         .setTitle("Présentation")
         .setAuthor({iconURL: user.avatarURL({ dynamic:true }), name: intros[user.id] ? intros[user.id].name : user.username})
-        .setDescription(intros[user.id] ? intros[user.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé.."  + "\n**Origine :** " + (intros[message.author.id] ? intros[message.author.id].origin : "Inconnue") )
+        .setDescription((intros[user.id] ? intros[user.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé..")  + "\n**Origine :** " + (intros[message.author.id] ? intros[message.author.id].origin : "Inconnue") )
         .setFooter({text: "Âge : " + (intros[user.id] ? intros[user.id].age : "Inconnu")})
 
         .setColor("#FF0000")
