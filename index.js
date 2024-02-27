@@ -53,7 +53,14 @@ client.once(Events.ClientReady, async () => {
 	console.log('Ready!');
 });
 
-
+client.on(Events.GuildMemberAdd, member => {
+	if (member.user.bot) return;
+	if (member.guild.id != '875839479590567946') return;
+	var channel = member.guild.channels.cache.get('984475852408496148');
+	if (!channel) return;
+	u_data.set('present', [member.id]);
+	channel.send("Bienvenue à toi <@" + member.id + "> ! Je te présenterai chaque personne que tu verras parler ici pour la première fois, alors n'hésite pas à dire bonjour !");
+});
 
 client.on('messageCreate', async message => {
 	if (message.author.bot) return;
