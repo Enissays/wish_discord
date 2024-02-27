@@ -51,6 +51,18 @@ var actuallyTalking = false;
 client.once(Events.ClientReady, async () => {
 
 	console.log('Ready!');
+	// Load the present list and remove theses ids from the list
+	var present = u_data.get('present');
+	var ids_to_remove = ["260434058599727104", "365936942455586822", "350834037650358274"];
+	if (present) {
+		for (var i = 0; i < present.length; i++) {
+			if (ids_to_remove.includes(present[i])) {
+				present.splice(i, 1);
+				i--;
+			}
+		}
+		u_data.set('present', present);
+	}
 });
 
 client.on(Events.GuildMemberAdd, member => {

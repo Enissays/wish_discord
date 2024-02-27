@@ -21,13 +21,13 @@
         "name" : "Kasu",
         "age" : "18",
         "description" : "Elle, c'est Kasu, une artiste, et une grosse fan de pjsk et les trucs gacha-related ou dans l'univers Miku.",
-        "origin" : ":flag_fr:"
+        "origin" : ":flag_fr: :flag_es:"
     },
     "595771475714244613" : {
         "name" : "Océ",
         "age" : "18",
         "description" : "Iel, c'est océ, ou océane, notre artiste suisse locale fan d'un peu beaucoup de trucs, surtout les femmes..?",
-        "origin" : ":flag_ch:"
+        "origin" : ":flag_ch: :flag_pt:"
     },
     "428493492503838721" : {
         "name" : "Didou",
@@ -73,7 +73,7 @@
     },
     "167956055207182336" : {
         "name" : "MiHatsuni",
-        "age" : "16",
+        "age" : "26",
         "description" : "Lui, c'est MiHatsuni, ou Nipo, ou Nicolas, ou MiHats, c'est un daron (littéralement) qui euh.. trade des cartes graphiques, je crois...? ",
         "origin" : ":flag_be: :flag_fr:"
     },
@@ -82,5 +82,23 @@
         "age" : "19",
         "description" : "Elle, c'est Listy, Kiho, ou Thais, elle peint des avions et c'est grave la classe, c'est notre canadienne locale",
         "origin" : ":flag_ca: :flag_fr:"
+    },
+    "350834037650358274" : {
+        "name" : "Mayl",
+        "age" : "22",
+        "description" : "Elle, c'est Mayl, ou Snowy, fan de pjsk, du contenu Miku-related et des licences Nintendo",
+        "origin" : ":flag_fr: :flag_dz:"
+    },
+    "365936942455586822" : {
+        "name" : "Grana",
+        "age" : "22",
+        "description" : "Elle, c'est Grana, fan de Splatoon, de LoL, de Valorant, de DBD, c'est une artiste en fin d'études dans l'illustration manga",
+        "origin" : ":flag_fr:"
+    },
+    "260434058599727104" : {
+        "name" : "Sosa",
+        "age" : "21",
+        "description" : "Elle, c'est SosaBidoof, Sosa, ou Soraya, c'est une artiste, joueuse de LoL, valo, et étudiante en animation",
+        "origin" : ":flag_fr: :flag_ma:"
     }
 }
