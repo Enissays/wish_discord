@@ -267,7 +267,7 @@ module.exports =
         interaction.update({ embeds: [embed], components: [row]});
     
         const filter = i => i.customId === 'left' || i.customId === 'right';
-        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 120000 });
     
         collector.on('collect', async i => {
             console.log(index_pages);
