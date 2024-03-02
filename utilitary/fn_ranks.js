@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
 const cheevos = require("./cheevos.json");
 const cards = require("./cards.json");
 
@@ -239,5 +239,109 @@ module.exports =
         user_data.cheevos += cheevo;
         return this.addXp(50, user_data, channel);
         
+    },
+    exploreArtbook(interaction, artbook) {
+        var pages = artbook.pages;
+        var index_pages = 0;
+        if (pages.length < 1) {
+            return interaction.update("Cet artbook est vide!");
+        }
+        var embed = new EmbedBuilder()
+            .setAuthor({name: artbook.name})
+            .setTitle(pages[index_pages].name)
+            .setColor("#FF0000")
+            .setImage(pages[index_pages].url)
+            .setFooter({text: "Page " + (index_pages + 1) + " sur " + pages.length, iconURL: interaction.user.avatarURL()});
+    
+        var leftButton = new ButtonBuilder()
+            .setCustomId('left')
+            .setLabel('<<')
+            .setStyle(1);
+        var rightButton = new ButtonBuilder()
+            .setCustomId('right')
+            .setLabel('>>')
+            .setStyle(1);
+    
+        var row = new ActionRowBuilder()
+            .addComponents(leftButton, rightButton);
+        interaction.update({ embeds: [embed], components: [row]});
+    
+        const filter = i => i.customId === 'left' || i.customId === 'right';
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+    
+        collector.on('collect', async i => {
+            console.log(index_pages);
+            if (i.customId === 'left') {
+                index_pages--;
+                if (index_pages < 0) {
+                    index_pages = pages.length - 1;
+                }
+                embed
+                    .setTitle(pages[index_pages].name)
+                    .setImage(pages[index_pages].url)
+                    .setFooter({text: "Page " + (index_pages + 1) + " sur " + pages.length, iconURL: interaction.user.avatarURL()});
+                i.update({ embeds: [embed], components: [row]});
+            } else if (i.customId === 'right') {
+                index_pages++;
+                if (index_pages >= pages.length) {
+                    index_pages = 0;
+                }
+                embed
+                    .setTitle(pages[index_pages].name)
+                    .setImage(pages[index_pages].url)
+                    .setFooter({text: "Page " + (index_pages + 1) + " sur " + pages.length, iconURL: interaction.user.avatarURL()});
+                i.update({ embeds: [embed], components: [row]});
+            }
+        });
+    
+        collector.on('end', collected => {
+            interaction.editReply({ embeds: [embed], components: []});
+        });
+    },
+    
+    updateEmbed_artbook(embed, udata, index_artbooks) {
+        var artbook = udata.artbooks[index_artbooks];
+        console.log(artbook);
+        embed
+            .setAuthor({name: "Artbook " + (index_artbooks + 1) + " sur " + udata.artbooks.length})
+            .setTitle(artbook.name)
+            .setColor("#FF0000")
+            .setImage(artbook.cover)
+            .setDescription("Pages: " + artbook.pages.length)
+            .setFooter({text: "Créé le " + artbook.dateofcreation.toLocaleDateString() + " à " + artbook.dateofcreation.toLocaleTimeString()})
+    },
+    
+    uploadImage(imagePath) {
+        
+        return imagePath;
+    },
+    
+    ensureArtbook(udata) {
+        if (!udata.artbooks) {
+            udata.artbooks = [];
+        }
+    },
+    
+    createArtbook(udata, name, cover) {
+        if (!udata.artbooks) {
+            udata.artbooks = [];
+        }
+        udata.artbooks.push({
+            name: name,
+            cover : cover,
+            pages: [],
+            dateofcreation: new Date()
+        });
+    
+    },
+    
+    findArtbook(udata, name) {
+        if (!udata.artbooks) return null;
+        for (var i = 0; i < udata.artbooks.length; i++) {
+            if (udata.artbooks[i].name == name) {
+                return udata.artbooks[i];
+            }
+        }
+        return null;
     }
 }

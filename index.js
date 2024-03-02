@@ -76,7 +76,23 @@ client.on(Events.GuildMemberAdd, member => {
 
 client.on('messageCreate', async message => {
 	if (message.author.bot) return;
-
+	if (message.attachments.size > 0) {
+		if (u_data.get(message.author.id) && u_data.get(message.author.id).artbook_channels) {
+			var user_artbook_data = u_data.get(message.author.id);
+			if (user_artbook_data.artbook_channels[message.channel.id]) {
+				var artbook = ranks.findArtbook(user_artbook_data, user_artbook_data.artbook_channels[message.channel.id]);
+				if (artbook) {
+					artbook.pages.push({url: message.attachments.first().url, name: message.content});
+					message.channel.send("Image ajoutée à l'artbook !").then (msg => {
+						setTimeout(() => {
+							msg.delete();
+						}, 5000);
+					});
+					u_data.set(message.author.id, user_artbook_data);
+				}
+			}
+		}
+	}
 	if (u_data.get('present')) {
 		var present = u_data.get('present');
 		if (!present.includes(message.author.id) && message.channel.id == '984475852408496148') {
