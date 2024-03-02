@@ -73,7 +73,9 @@ data.artbooks = [
             name: 'shadow wizard money gang'
           }
         ],
-        dateofcreation: Date.now(),
+        dateofcreation: new Date()
+        
     }
 ];
+console.log(data.artbooks[0]);
 u_data.set('451058575863840788', data);
