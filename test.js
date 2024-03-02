@@ -3,7 +3,6 @@ const fn_ranks = require('./utilitary/fn_ranks');
 const u_data = new Enmap({name: "points"});
 
 var data = fn_ranks.getRanks({nickname: 'Yas', id: '451058575863840788'}, u_data);
-console.log(data.artbooks[1]);
 data.artbooks = [
     {
         name: 'Moments de courage',
