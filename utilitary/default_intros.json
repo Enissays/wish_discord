@@ -19,7 +19,7 @@
     },
     "306902723129901056" : {
         "name" : "Kasu",
-        "age" : "18",
+        "age" : "19",
         "description" : "Elle, c'est Kasu, une artiste, et une grosse fan de pjsk et les trucs gacha-related ou dans l'univers Miku.",
         "origin" : ":flag_fr: :flag_es:"
     },
@@ -106,5 +106,47 @@
         "age" : "21",
         "description" : "Elle, c'est Sam, très forte à LoL",
         "origin" : ":flag_fr: :flag_it:"
+    },
+    "612727625441345545" : {
+        "name" : "Loan",
+        "age" : "21",
+        "description" : "Lui, c'est Loan, artiste, graphic designer, fan de Zelda et de FFVI",
+        "origin" : ":flag_fr:"
+    },
+    "147804516283187201" : {
+        "name" : "Maggie",
+        "age" : "16",
+        "description" : "Elle, c'est Maggie ou Aurore, joueuse experimentée de Smash Bros. et fanatique de manga (Ex. 20th Century Boys)",
+        "origin" : ":flag_fr: :flag_dz:"
+    },
+    "906856832402870333" : {
+        "name" : "Nacim",
+        "age" : "caca",
+        "description" : "caca",
+        "origin" : ":flag_fr:"
+    },
+    "901830818438197278" : {
+        "name" : "Jezekael",
+        "age" : "18",
+        "description" : "Lui, c'est Jezekael, ou Jez, ou Fuj, étudiant en droit breton de BREEETAAAAGNE.",
+        "origin" :":flag_fr:"
+    },
+    "349996453021745152" : {
+        "name" : "Kaowi",
+        "age" : "19",
+        "description" : "Lui, c'est Kaowi, ou Mathieu, comédien amateur [Plus d'infos (voilà)](https://fandubbers-vf.fandom.com/fr/wiki/Kaowi)",
+        "origin" : ":flag_fr:"
+    },
+    "470470104467898378" : {
+        "name" : "okna",
+        "age" : "20",
+        "description" : "Iel, c'est okna, ou kelig, ou keligou :3, apprenti artiste 3d et créateur de \"contenu\" très créatif, possesseur du drapeau de remi de ratatouille, ex-pro de Beat Saber, [son site](https://kelig.me/)",
+        "origin" : ":flag_fr:"
+    },
+    "807339379344408646" : {
+        "name" : "Belbonbon",
+        "age" : "21",
+        "description" : "Elle, c'est Belbonbon, Belbon, Belmont, ou Amira, Twittos étudiante dans une fac de droit et multilingue",
+        "origin" : ":flag_es: :flag_ma:"
     }
 }

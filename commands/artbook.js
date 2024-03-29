@@ -3,6 +3,10 @@ const ranks = require("../utilitary/fn_ranks.js");
 var path = require('path');
 
 const { uploadImage, ensureArtbook, findArtbook, createArtbook, updateEmbed_artbook, exploreArtbook } = require('../utilitary/fn_ranks.js');
+const { makeid } = require('../utilitary/fn_global.js');
+
+const Enmap = require('enmap');
+const public_db = new Enmap({name: "public_artbook"});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -35,13 +39,44 @@ module.exports = {
         )
         .addSubcommand(subcommand =>
             subcommand
+                .setName('edit')
+                .setDescription('Edite un artbook')
+                .addStringOption(option =>
+                    option.setName('name')
+                        .setDescription('Nom de l\'artbook à modifier')
+                        .setRequired(true)
+                )
+                .addStringOption(option =>
+                    option.setName('new_name')
+                        .setDescription('Nouveau nom de l\'artbook')
+                        .setRequired(false)
+                )
+                .addAttachmentOption(option =>
+                    option.setName('cover')
+                        .setDescription('Nouvelle couverture de l\'artbook')
+                        .setRequired(false)
+                )
+        )
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('publish')
+                .setDescription('Publie un artbook')
+                .addStringOption(option =>
+                    option.setName('name')
+                        .setDescription('Nom de l\'artbook')
+                        .setRequired(true)
+                )
+        )
+
+        .addSubcommand(subcommand =>
+            subcommand
                 .setName('list')
                 .setDescription('Liste tes artbooks')
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('cover')
-                .setDescription('Change la couverture et le nom de l\'artbook')
+                .setDescription('Change la couverture de l\'artbook')
                 .addStringOption(option =>
                     option.setName('name')
                         .setDescription('Nom de l\'artbook')
@@ -86,6 +121,21 @@ module.exports = {
                 .addChannelOption(option =>
                     option.setName('channel')
                         .setDescription('Salon à lier')
+                        .setRequired(true)
+                )
+        )
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('unlink')
+                .setDescription('Détache un artbook d\'un salon')
+                .addStringOption(option =>
+                    option.setName('name')
+                        .setDescription('Nom de l\'artbook')
+                        .setRequired(true)
+                )
+                .addChannelOption(option =>
+                    option.setName('channel')
+                        .setDescription('Salon à délier')
                         .setRequired(true)
                 )
         )
@@ -244,6 +294,66 @@ module.exports = {
                 artbook_channel[channel.id] = name;
                 interaction.reply("Artbook lié avec succès!");
                 all_data.set(interaction.user.id, udata);
+                break;
+
+            case 'unlink':
+                var name = interaction.options.getString('name');
+                var channel = interaction.options.getChannel('channel');
+                var artbook = findArtbook(udata, name);
+                if (!artbook) {
+                    return interaction.reply("Cet artbook n'existe pas!");
+                }
+                var artbook_channel = udata.artbook_channels;
+                if (!artbook_channel) {
+                    return interaction.reply("Cet artbook n'est lié à aucun salon!");
+                }
+                if (!artbook_channel[channel.id]) {
+                    return interaction.reply("Cet artbook n'est pas lié à ce salon!");
+                }
+                delete artbook_channel[channel.id];
+                interaction.reply("Artbook délié avec succès!");
+                all_data.set(interaction.user.id, udata);
+                break;
+
+            case 'edit':
+                var name = interaction.options.getString('name');
+                var new_name = interaction.options.getString('new_name');
+                var cover = interaction.options.getAttachment('cover');
+                var artbook = findArtbook(udata, name);
+                if (!artbook) {
+                    return interaction.reply("Cet artbook n'existe pas!");
+                }
+                if (new_name) {
+                    artbook.name = new_name;
+                }
+                if (cover) {
+                    artbook.cover = await uploadImage(cover.url);
+                }
+                interaction.reply("Artbook modifié avec succès!");
+                all_data.set(interaction.user.id, udata);
+                break;
+
+            case 'publish' :
+                // Ajout d'une propriété "public" à l'artbook
+                var name = interaction.options.getString('name');
+                var artbook = findArtbook(udata, name);
+                if (!artbook) {
+                    return interaction.reply("Cet artbook n'existe pas!");
+                }
+
+                if (!artbook.public) {
+                    artbook.public = makeid(10);
+                    public_db.set(artbook.public, artbook);
+                    interaction.reply("Artbook publié avec succès, il peut être consulté avec la commande /artbook view " + artbook.public + "\nPour le modifier, re-effectue cette même commande.");
+                    all_data.set(interaction.user.id, udata);
+                } 
+                else 
+                {
+                    public_db.set(artbook.public, artbook);
+                    interaction.reply("Artbook mis à jour avec succès!");
+                    all_data.set(interaction.user.id, udata);
+                }
+                
                 break;
             }
 	},
