@@ -95,14 +95,23 @@ client.on('messageCreate', async message => {
 	}
 	if (u_data.get('present')) {
 		var present = u_data.get('present');
-		if (!present.includes(message.author.id) && message.channel.id == '984475852408496148') {
-			console.log(intros[message.author.id]);
-			var embed = new EmbedBuilder()
+		if (!present.includes(message.author.id) && message.channel.id == '984475852408496148' && (intros[message.author.id] || message.author.id == "1159262796895240272")) {
+			var embed;
+			if (message.author.id == "1159262796895240272") {
+				embed = new EmbedBuilder()
+					.setTitle("Je présente..")
+					.setAuthor({iconURL: message.author.displayAvatarURL(), name: "weyki"})
+					.setImage("https://tenor.com/view/young-thug-youngthug-handshake-hand-shake-gif-1554381679487327965")
+					.setFooter({text: "Âge : 17"})
+					.setColor("#FF0000");
+			} else {
+			embed = new EmbedBuilder()
 				.setTitle("J'te présente !")
 				.setAuthor({iconURL: message.author.displayAvatarURL(), name: intros[message.author.id] ? intros[message.author.id].name : message.author.username})
 				.setDescription((intros[message.author.id] ? intros[message.author.id].description : "J'ai pas vraiment de données sur lui honnêtement, désolé..")  + "\n**Origine :** " + (intros[message.author.id] ? intros[message.author.id].origin : "Inconnue") )
 				.setFooter({text: "Âge : " + (intros[message.author.id] ? intros[message.author.id].age : "Inconnu")})
-				.setColor("#FF0000")
+				.setColor("#FF0000");
+			}
 
 			message.channel.send({embeds: [embed]});
 			present.push(message.author.id);
