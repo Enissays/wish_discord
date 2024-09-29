@@ -101,7 +101,7 @@ client.on('messageCreate', async message => {
 				embed = new EmbedBuilder()
 					.setTitle("Je présente..")
 					.setAuthor({iconURL: message.author.displayAvatarURL(), name: "weyki"})
-					.setImage("https://tenor.com/view/young-thug-youngthug-handshake-hand-shake-gif-1554381679487327965")
+					.setImage("https://media1.tenor.com/m/FZJF5us3nt0AAAAd/young-thug-youngthug.gif")
 					.setFooter({text: "Âge : 17"})
 					.setColor("#FF0000");
 			} else {
